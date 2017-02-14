@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="jane" class="com.zakharuk.quickdr.Therapist">
+        <constructor-arg value="Jane"></constructor-arg>
+        <constructor-arg value="115"></constructor-arg>
+        <property name="patients">
+            <list>
+                <ref bean="john" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="john" class="com.zakharuk.quickdr.ChildPatient">
+        <constructor-arg value="John"></constructor-arg>
+        <constructor-arg value="9"></constructor-arg>
+    </bean>
+</beans>
