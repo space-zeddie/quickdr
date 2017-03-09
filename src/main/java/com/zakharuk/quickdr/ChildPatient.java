@@ -1,16 +1,29 @@
 package com.zakharuk.quickdr;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by matvii on 06.02.17.
  */
+@Entity
+@Table(name="ChildPatients")
 public class ChildPatient implements Patient {
 
+    @Id
+    @GeneratedValue
+    private int patientId;
+
+    @Column(name="name")
     private String name;
+
+    @Column(name="age")
     private int age;
+
+    @Column(name="diagnosis")
     private String diagnosis = null;
+
     private List<Procedure> assignedProcedures;
 
     public ChildPatient(){}
@@ -22,6 +35,14 @@ public class ChildPatient implements Patient {
     }
 
     public void addProcedure(Procedure procedure) { assignedProcedures.add(procedure); }
+
+    public int getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
+    }
 
     public String getName() {
         return name;
@@ -49,7 +70,7 @@ public class ChildPatient implements Patient {
 
     @Override
     public List<Procedure> getAssignedProcedures() {
-        return null;
+        return assignedProcedures;
     }
 
     public String getPatientData() {
