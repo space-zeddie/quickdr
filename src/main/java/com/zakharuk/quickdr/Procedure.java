@@ -22,8 +22,12 @@ public class Procedure {
     @Column(name="type")
     private Procedures type;
 
-    @ManyToMany
-    private List<Doctor> doctors;
+    //@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    //@JoinTable(name="doctor_procedure", joinColumns = {
+      //      @JoinColumn(name = "doctorId")
+    //})
+
+    //private List<Doctor> doctors;
 
     @Column(name="date")
     private Date dateOfProcedure;
@@ -37,7 +41,7 @@ public class Procedure {
 
     public Procedure(Procedures type, List<Doctor> doctors, Date dateOfProcedure) {
         this.type = type;
-        this.doctors = doctors;
+        //this.doctors = doctors;
         this.dateOfProcedure = dateOfProcedure;
     }
 
@@ -57,13 +61,11 @@ public class Procedure {
         this.type = type;
     }
 
-    public List<Doctor> getDoctors() {
-        return doctors;
-    }
+    //public List<Doctor> getDoctors() {return doctors;}
 
-    public void setDoctors(List<Doctor> doctors) {
-        this.doctors = doctors;
-    }
+    //public void setDoctors(List<Doctor> doctors) {
+        //this.doctors = doctors;
+    //}
 
     public Date getDateOfProcedure() {
         return dateOfProcedure;

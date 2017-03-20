@@ -24,6 +24,10 @@ public class ChildPatient implements Patient {
     @Column(name="diagnosis")
     private String diagnosis = null;
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinTable(name="patient_procedure", joinColumns = {
+          @JoinColumn(name = "id")
+    })
     private List<Procedure> assignedProcedures;
 
     public ChildPatient(){}
