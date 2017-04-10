@@ -21,7 +21,7 @@
         <constructor-arg ref="dataSource"/>
     </bean>
 
-    <bean id="jane" class="com.zakharuk.quickdr.Therapist">
+    <bean id="jane" class="com.zakharuk.quickdr.entity.Therapist">
         <constructor-arg value="Jane"></constructor-arg>
         <constructor-arg value="115"></constructor-arg>
         <property name="patients">
@@ -31,7 +31,7 @@
         </property>
     </bean>
 
-    <bean id="john" class="com.zakharuk.quickdr.ChildPatient">
+    <bean id="john" class="com.zakharuk.quickdr.entity.ChildPatient">
         <constructor-arg value="John"></constructor-arg>
         <constructor-arg value="9"></constructor-arg>
     </bean>

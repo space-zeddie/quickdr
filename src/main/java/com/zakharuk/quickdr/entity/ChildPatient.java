@@ -1,4 +1,4 @@
-package com.zakharuk.quickdr;
+package com.zakharuk.quickdr.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;

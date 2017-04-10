@@ -1,4 +1,6 @@
-package com.zakharuk.quickdr;
+package com.zakharuk.quickdr.entity;
+
+import com.zakharuk.quickdr.entity.Procedure;
 
 import java.util.List;
 

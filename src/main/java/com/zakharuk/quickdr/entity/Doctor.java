@@ -1,4 +1,4 @@
-package com.zakharuk.quickdr;
+package com.zakharuk.quickdr.entity;
 
 import javafx.util.Pair;
 

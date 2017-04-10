@@ -1,5 +1,7 @@
 package com.zakharuk.quickdr;
 
+import com.zakharuk.quickdr.entity.Doctor;
+import com.zakharuk.quickdr.entity.Patient;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

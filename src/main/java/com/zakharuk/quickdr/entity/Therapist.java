@@ -1,5 +1,8 @@
-package com.zakharuk.quickdr;
+package com.zakharuk.quickdr.entity;
 
+import com.zakharuk.quickdr.entity.Doctor;
+import com.zakharuk.quickdr.entity.Patient;
+import com.zakharuk.quickdr.entity.Procedures;
 import javafx.util.Pair;
 
 import java.util.*;

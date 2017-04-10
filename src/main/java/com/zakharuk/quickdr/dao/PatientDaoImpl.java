@@ -1,5 +1,7 @@
-package com.zakharuk.quickdr;
+package com.zakharuk.quickdr.dao;
 
+import com.zakharuk.quickdr.dao.PatientDao;
+import com.zakharuk.quickdr.entity.Patient;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

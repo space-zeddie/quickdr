@@ -1,4 +1,6 @@
-package com.zakharuk.quickdr;
+package com.zakharuk.quickdr.dao;
+
+import com.zakharuk.quickdr.entity.Patient;
 
 /**
  * Created by matvii on 09.03.17.
