@@ -33,7 +33,7 @@ public class PersistenceConfig {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(restDataSource());
         sessionFactory.setPackagesToScan(
-                new String[] { "org.baeldung.spring.persistence.model" });
+                new String[] { "com.zakharuk.quickdr" });
         sessionFactory.setHibernateProperties(hibernateProperties());
 
         return sessionFactory;
