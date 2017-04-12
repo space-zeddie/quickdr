@@ -1,5 +1,7 @@
 package com.zakharuk.quickdr.entity;
 
+import org.omg.CORBA.UNKNOWN;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.List;
  * Created by matvii on 14.02.17.
  */
 enum Procedures {
-    EXAMINATION, OPERATION, BLOOD_ANALYSIS;
+    EXAMINATION, OPERATION, BLOOD_ANALYSIS, UNKNOWN;
 }
 
 @Entity
@@ -59,6 +61,25 @@ public class Procedure {
 
     public void setType(Procedures type) {
         this.type = type;
+    }
+
+    private Procedures stringToType(String t) {
+        t = t.toLowerCase();
+        switch (t) {
+            case "examination": return Procedures.EXAMINATION,
+            case "blood analysis": return Procedures.BLOOD_ANALYSIS,
+            case "operation": return Procedures.OPERATION,
+            default: return Procedures.UNKNOWN;
+        }
+    }
+
+    private String typeToString(Procedures t) {
+        switch (t) {
+            case EXAMINATION: return "examination",
+            case BLOOD_ANALYSIS: return "blood analysis",
+            case OPERATION: return "operation",
+            default: return "unknown";
+        }
     }
 
     //public List<Doctor> getDoctors() {return doctors;}
