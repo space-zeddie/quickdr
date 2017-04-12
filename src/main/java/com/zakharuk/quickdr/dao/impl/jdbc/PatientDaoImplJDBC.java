@@ -58,7 +58,7 @@ public class PatientDaoImplJDBC implements PatientDao {
         jdbcTemplate.update(UPDATE, patient.getName(), patient.getAge(), patient.getDiagnosis());
     }
 
-    private RowMapper<PatientPojo> carStatsPojoMapper = new RowMapper<PatientPojo>() {
+    private RowMapper<PatientPojo> patientPojoRowMapper = new RowMapper<PatientPojo>() {
         public PatientPojo mapRow(ResultSet rs, int rowNum) throws SQLException {
             return new PatientPojo(rs.getString("name"),
                     rs.getInt("age"),

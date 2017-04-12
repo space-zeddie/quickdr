@@ -16,13 +16,15 @@ public class ProcedureDaoImplJDBC implements ProcedureDao {
     private JdbcTemplate jdbcTemplate;
 
     private static final String GET = "SELECT * FROM Procedures WHERE id=?";
-    private static final String INSERT = "INSERT INTO ChildPatients (name, age, diagnosis) VALUES (?,?,?)";
-    private static final String UPDATE = "UPDATE ChildPatients SET name=?, age=?, diagnosis=?";
-    private static final String DELETE = "DELETE FROM ChildPatients WHERE patientId=?";
+    private static final String INSERT = "INSERT INTO Procedures (type, date, completed) VALUES (?,?,?)";
+    private static final String UPDATE = "UPDATE Procedures SET type=?, date=?, completed=?";
+    private static final String DELETE = "DELETE FROM Procedures WHERE id=?";
 
     @Override
     public void add(Procedure procedure) {
-
+        System.out.println("Saving procedure to DB: " + procedure);
+        jdbcTemplate.update(INSERT, procedure.getTypeString(), procedure.getDateOfProcedure(),
+                procedure.isCompleted());
     }
 
     @Override
@@ -32,11 +34,14 @@ public class ProcedureDaoImplJDBC implements ProcedureDao {
 
     @Override
     public void update(Procedure procedure) {
-
+        System.out.println("Updating procedure: " + procedure);
+        jdbcTemplate.update(UPDATE, procedure.getTypeString(), procedure.getDateOfProcedure(),
+                procedure.isCompleted());
     }
 
     @Override
     public void remove(Procedure procedure) {
-
+        System.out.println("Removing: " + procedure);
+        jdbcTemplate.update(DELETE, procedure.getId());
     }
 }

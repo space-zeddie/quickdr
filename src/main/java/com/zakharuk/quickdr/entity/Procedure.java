@@ -35,7 +35,7 @@ public class Procedure {
     @Column(name="date")
     private Date dateOfProcedure;
 
-    @Column(name="isCompleted")
+    @Column(name="completed")
     private boolean isCompleted;
 
     public Procedure(Procedures type) {
@@ -105,5 +105,23 @@ public class Procedure {
 
     public void setDateOfProcedure(Date dateOfProcedure) {
         this.dateOfProcedure = dateOfProcedure;
+    }
+
+    @Override
+    public String toString() {
+        return "Procedure{" +
+                "id=" + id +
+                ", type=" + type +
+                ", dateOfProcedure=" + dateOfProcedure +
+                ", isCompleted=" + isCompleted +
+                '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
