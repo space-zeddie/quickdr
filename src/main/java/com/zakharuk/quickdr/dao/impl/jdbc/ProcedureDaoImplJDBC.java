@@ -2,6 +2,8 @@ package com.zakharuk.quickdr.dao.impl.jdbc;
 
 import com.zakharuk.quickdr.dao.ProcedureDao;
 import com.zakharuk.quickdr.entity.Procedure;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -10,7 +12,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ProcedureDaoImplJDBC implements ProcedureDao {
 
-    
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    private static final String GET = "SELECT * FROM Procedures WHERE id=?";
+    private static final String INSERT = "INSERT INTO ChildPatients (name, age, diagnosis) VALUES (?,?,?)";
+    private static final String UPDATE = "UPDATE ChildPatients SET name=?, age=?, diagnosis=?";
+    private static final String DELETE = "DELETE FROM ChildPatients WHERE patientId=?";
 
     @Override
     public void add(Procedure procedure) {

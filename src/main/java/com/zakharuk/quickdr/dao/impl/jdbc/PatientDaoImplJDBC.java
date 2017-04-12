@@ -21,7 +21,7 @@ public class PatientDaoImplJDBC implements PatientDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private static final String GET = "SELECT * FROM ChildPatients WHERE id=?";
+    private static final String GET = "SELECT * FROM ChildPatients WHERE patientId=?";
     private static final String INSERT = "INSERT INTO ChildPatients (name, age, diagnosis) VALUES (?,?,?)";
     private static final String UPDATE = "UPDATE ChildPatients SET name=?, age=?, diagnosis=?";
     private static final String DELETE = "DELETE FROM ChildPatients WHERE patientId=?";
