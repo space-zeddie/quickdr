@@ -35,7 +35,14 @@ public class PatientDaoImplJDBC implements PatientDao {
     }
 
     @Override
+    public void remove(Patient patient) {
+        System.out.println("Removing: " + patient.getPatientData());
+        jdbcTemplate.update(DELETE, patient.getPatientId());
+    }
+
+    @Override
     public Patient getPatientById(int id) {
+        System.out.println("Getting patient: " + id);
         return jdbcTemplate.queryForObject(GET, mapper, id);
     }
 
@@ -46,8 +53,10 @@ public class PatientDaoImplJDBC implements PatientDao {
 
     @Override
     public void savePatient(Patient patient) {
-
+        System.out.println("Saving patient to DB: " + patient.getPatientData());
+        jdbcTemplate.update(INSERT, patient.getName(), patient.getAge(), patient.getDiagnosis());
     }
+
     private RowMapper<PatientPojo> carStatsPojoMapper = new RowMapper<PatientPojo>() {
         public PatientPojo mapRow(ResultSet rs, int rowNum) throws SQLException {
             return new PatientPojo(rs.getString("name"),

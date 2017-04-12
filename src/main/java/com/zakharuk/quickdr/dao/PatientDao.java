@@ -12,4 +12,8 @@ public interface PatientDao {
     Patient getPatientByName(String name);
     void savePatient(Patient patient);
 
+    void remove(Patient patient);
+
+
+
 }
