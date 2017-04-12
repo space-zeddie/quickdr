@@ -1,4 +1,4 @@
-package com.zakharuk.quickdr.dao;
+package com.zakharuk.quickdr.dao.impl;
 
 import com.zakharuk.quickdr.dao.PatientDao;
 import com.zakharuk.quickdr.entity.Patient;
