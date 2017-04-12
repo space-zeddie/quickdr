@@ -1,13 +1,11 @@
 package com.zakharuk.quickdr.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.apache.tomcat.jdbc.pool.DataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
@@ -31,7 +29,7 @@ public class PersistenceConfig {
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(restDataSource());
+        sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan(
                 new String[] { "com.zakharuk.quickdr" });
         sessionFactory.setHibernateProperties(hibernateProperties());
@@ -40,7 +38,7 @@ public class PersistenceConfig {
     }
 
     @Bean
-    public BasicDataSource restDataSource() {
+    public BasicDataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
         dataSource.setUrl(env.getProperty("jdbc.url"));
