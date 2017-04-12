@@ -17,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.sql.DataSource;
+import javax.transaction.TransactionManager;
 
 /**
  * Created by matvii on 10.04.17.
@@ -50,11 +51,6 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     @Bean
     public JdbcTemplate jdbcTemplate(){
         return new JdbcTemplate(dataSource);
-    }
-
-    @Bean
-    public PlatformTransactionManager txManager(){
-        return new DataSourceTransactionManager(dataSource);
     }
 
 }
