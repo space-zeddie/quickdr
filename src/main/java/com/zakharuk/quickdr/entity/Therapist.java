@@ -27,25 +27,25 @@ public class Therapist implements Doctor {
     @Column(name="office")
     private int office;
 
-    private List<Patient> patients;
+    //private List<Patient> patients;
 
     @Column(name="whour1")
     private Date workingHour1;
     @Column(name="whour2")
     private Date workingHour2;
 
-    private Map<Date, Patient> appointments;
-    private List<Procedures> availableProcedures;
+    //private Map<Date, Patient> appointments;
+   // private List<Procedures> availableProcedures;
 
     public Therapist(){
-        patients = new ArrayList<Patient>();
+        //patients = new ArrayList<Patient>();
     }
 
     public Therapist(String name, int office) {
         this.name = name;
         this.office = office;
-        patients = new ArrayList<Patient>();
-        appointments = new HashMap<Date, Patient>();
+        //patients = new ArrayList<Patient>();
+        //appointments = new HashMap<Date, Patient>();
     }
 
     public Therapist(String name, int office, Pair<Date, Date> workingHours, List<Procedures> availableProcedures) {
@@ -53,9 +53,9 @@ public class Therapist implements Doctor {
         this.office = office;
         this.workingHour1 = workingHours.getKey();
         this.workingHour2 = workingHours.getValue();
-        this.availableProcedures = availableProcedures;
-        patients = new ArrayList<Patient>();
-        appointments = new HashMap<Date, Patient>();
+        //this.availableProcedures = availableProcedures;
+        //patients = new ArrayList<Patient>();
+       // appointments = new HashMap<Date, Patient>();
     }
 
     public int getId() {
@@ -84,7 +84,7 @@ public class Therapist implements Doctor {
     }
 
     public List<Patient> getPatients() {
-        return patients;
+        return null;//patients;
     }
 
     public void setWorkingHours(Pair<Date, Date> workingHours) {
@@ -111,21 +111,21 @@ public class Therapist implements Doctor {
     }
 
     public void setAvailableProcedures(List<Procedures> availableProcedures) {
-        this.availableProcedures = availableProcedures;
+        //this.availableProcedures = availableProcedures;
     }
 
     @Override
     public List<Procedures> getAvailableProcedures() {
-        return availableProcedures;
+        return null;//availableProcedures;
     }
 
     public void setPatients(List<Patient> patients) {
-        this.patients = patients;
+        //this.patients = patients;
     }
 
     public void examine(Patient patient) {
-        if (!patients.contains(patient))
-            patients.add(patient);
+        //if (!patients.contains(patient))
+          //  patients.add(patient);
         patient.setDiagnosis("cancer");
         System.out.println("Dr. " + name + " examined " + patient.getPatientData());
     }
@@ -137,18 +137,18 @@ public class Therapist implements Doctor {
 
     @Override
     public boolean bookAppointment(Patient patient, Date at) {
-        if (!appointments.keySet().contains(at) &&
+        /*if (!appointments.keySet().contains(at) &&
                 ((workingHour1.getTime()<=at.getTime()) && (at.getTime()<=workingHour2.getTime()))) {
             if (!patients.contains(patient))
                 patients.add(patient);
             appointments.put(at, patient);
             return true;
-        }
+        }*/
         return false;
     }
 
     @Override
     public Map<Date, Patient> getAppointments() {
-        return appointments;
+        return null;//appointments;
     }
 }
