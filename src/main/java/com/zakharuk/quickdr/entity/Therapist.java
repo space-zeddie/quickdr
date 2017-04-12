@@ -27,7 +27,10 @@ public class Therapist implements Doctor {
     @Column(name="office")
     private int office;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "doctors")
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinTable(name="doctor_patient", joinColumns =
+        @JoinColumn(name = "doctor_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "patient_id", referencedColumnName = "patientId"))
     private List<Patient> patients;
 
     @Column(name="whour1")
