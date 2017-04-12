@@ -130,7 +130,7 @@ public class Therapist implements Doctor {
     public void examine(ChildPatient patient) {
         if (!patients.contains(patient))
             patients.add(patient);
-        patient.setDiagnosis("cancer");
+       // patient.setDiagnosis("cancer");
         System.out.println("Dr. " + name + " examined " + patient.getPatientData());
     }
 
