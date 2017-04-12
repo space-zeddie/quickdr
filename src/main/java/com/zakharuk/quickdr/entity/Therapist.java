@@ -27,7 +27,8 @@ public class Therapist implements Doctor {
     @Column(name="office")
     private int office;
 
-    //private List<Patient> patients;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "doctors")
+    private List<Patient> patients;
 
     @Column(name="whour1")
     private Date workingHour1;
@@ -38,13 +39,13 @@ public class Therapist implements Doctor {
    // private List<Procedures> availableProcedures;
 
     public Therapist(){
-        //patients = new ArrayList<Patient>();
+        patients = new ArrayList<Patient>();
     }
 
     public Therapist(String name, int office) {
         this.name = name;
         this.office = office;
-        //patients = new ArrayList<Patient>();
+        patients = new ArrayList<Patient>();
         //appointments = new HashMap<Date, Patient>();
     }
 
@@ -54,7 +55,7 @@ public class Therapist implements Doctor {
         this.workingHour1 = workingHours.getKey();
         this.workingHour2 = workingHours.getValue();
         //this.availableProcedures = availableProcedures;
-        //patients = new ArrayList<Patient>();
+        patients = new ArrayList<Patient>();
        // appointments = new HashMap<Date, Patient>();
     }
 
@@ -120,12 +121,12 @@ public class Therapist implements Doctor {
     }
 
     public void setPatients(List<Patient> patients) {
-        //this.patients = patients;
+        this.patients = patients;
     }
 
     public void examine(Patient patient) {
-        //if (!patients.contains(patient))
-          //  patients.add(patient);
+        if (!patients.contains(patient))
+            patients.add(patient);
         patient.setDiagnosis("cancer");
         System.out.println("Dr. " + name + " examined " + patient.getPatientData());
     }

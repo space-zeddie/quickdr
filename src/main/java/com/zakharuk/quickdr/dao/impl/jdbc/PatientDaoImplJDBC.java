@@ -25,7 +25,7 @@ public class PatientDaoImplJDBC implements PatientDao {
     private static final String INSERT = "INSERT INTO ChildPatients (name, age, diagnosis) VALUES (?,?,?)";
     private static final String UPDATE = "UPDATE ChildPatients SET name=?, age=?, diagnosis=?";
     private static final String DELETE = "DELETE FROM ChildPatients WHERE patientId=?";
-   // private static final String GET_FREE_BY_DISPATCHER = "SELECT * FROM ChildPatients WHERE patientId NOT IN (SELECT c_d.car_id FROM car_driver c_d WHERE time_till IS NULL OR now() BETWEEN time_from AND time_till) AND serviceable=TRUE AND dept_id=?";
+    //private static final String GET_UNASSIGNED_PATIENTS = "SELECT * FROM ChildPatients WHERE patientId NOT IN (SELECT c_d.car_id FROM car_driver c_d WHERE time_till IS NULL OR now() BETWEEN time_from AND time_till) AND serviceable=TRUE AND dept_id=?";
 
    // private static final String GET_STATS_BY_BRAND_MODEL = "SELECT brand, model, count(DISTINCT id) AS amount FROM car GROUP BY brand, model";
 
