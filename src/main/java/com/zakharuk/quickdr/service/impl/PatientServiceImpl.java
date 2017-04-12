@@ -4,10 +4,14 @@ import com.zakharuk.quickdr.dao.PatientDao;
 import com.zakharuk.quickdr.entity.Patient;
 import com.zakharuk.quickdr.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by matvii on 12.04.17.
  */
+@Service
+@Transactional
 public class PatientServiceImpl implements PatientService {
 
     @Autowired
@@ -20,7 +24,7 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public Patient getPatientById(int id) {
-        return patientDao.getPatientById();
+        return patientDao.getPatientById(id);
     }
 
     @Override
