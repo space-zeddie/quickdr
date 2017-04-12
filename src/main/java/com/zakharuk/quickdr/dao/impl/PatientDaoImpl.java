@@ -41,4 +41,9 @@ public class PatientDaoImpl implements PatientDao {
     public void savePatient(Patient patient) {
         currentSession().update(patient);
     }
+
+    @Override
+    public void remove(Patient patient) {
+
+    }
 }
