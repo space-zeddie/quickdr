@@ -19,6 +19,7 @@ public class Procedure {
 
     @Id
     @GeneratedValue
+    @Column(name="id")
     private int id;
 
     @Column(name="type")
@@ -40,6 +41,8 @@ public class Procedure {
     public Procedure(Procedures type) {
         this.type = type;
     }
+
+    public Procedure(){}
 
     public Procedure(Procedures type, List<Doctor> doctors, Date dateOfProcedure) {
         this.type = type;
