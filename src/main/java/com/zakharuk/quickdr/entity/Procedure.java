@@ -14,7 +14,7 @@ enum Procedures {
 }
 
 @Entity
-@Table(name="Procedures")
+@Table(name="Procedure")
 public class Procedure {
 
     @Id
@@ -23,7 +23,7 @@ public class Procedure {
     private int id;
 
     @Column(name="type")
-    private Procedures type;
+    private String type;
 
     //@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     //@JoinTable(name="doctor_procedure", joinColumns = {
@@ -38,13 +38,13 @@ public class Procedure {
     @Column(name="completed")
     private boolean isCompleted;
 
-    public Procedure(Procedures type) {
+    public Procedure(String type) {
         this.type = type;
     }
 
     public Procedure(){}
 
-    public Procedure(Procedures type, List<Doctor> doctors, Date dateOfProcedure) {
+    public Procedure(String type, List<Doctor> doctors, Date dateOfProcedure) {
         this.type = type;
         //this.doctors = doctors;
         this.dateOfProcedure = dateOfProcedure;
@@ -58,20 +58,20 @@ public class Procedure {
         isCompleted = completed;
     }
 
-    public String getTypeString() {
-        return typeToString(this.type);
+    public String getType() {
+        return this.type;
     }
 
     public void setType(String type) {
-        this.type = stringToType(type);
+        this.type = type;
     }
 
-    public Procedures getType() {
-        return type;
+    public Procedures getTypeEnum() {
+        return stringToType(type);
     }
 
     public void setType(Procedures type) {
-        this.type = type;
+        this.type = typeToString(type);
     }
 
     private Procedures stringToType(String t) {

@@ -21,15 +21,15 @@ public class ProcedureDaoImplJDBC implements ProcedureDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private static final String GET = "SELECT * FROM Procedures WHERE id=?";
-    private static final String INSERT = "INSERT INTO Procedures (type, date, completed) VALUES (?,?,?)";
-    private static final String UPDATE = "UPDATE Procedures SET type=?, date=?, completed=?";
-    private static final String DELETE = "DELETE FROM Procedures WHERE id=?";
+    private static final String GET = "SELECT * FROM procedures WHERE id=?";
+    private static final String INSERT = "INSERT INTO procedures (type, date, completed) VALUES (?,?,?)";
+    private static final String UPDATE = "UPDATE procedures SET type=?, date=?, completed=?";
+    private static final String DELETE = "DELETE FROM procedures WHERE id=?";
 
     @Override
     public void add(Procedure procedure) {
         System.out.println("Saving procedure to DB: " + procedure);
-        jdbcTemplate.update(INSERT, procedure.getTypeString(), procedure.getDateOfProcedure(),
+        jdbcTemplate.update(INSERT, procedure.getType(), procedure.getDateOfProcedure(),
                 procedure.isCompleted());
     }
 
@@ -42,7 +42,7 @@ public class ProcedureDaoImplJDBC implements ProcedureDao {
     @Override
     public void update(Procedure procedure) {
         System.out.println("Updating procedure: " + procedure);
-        jdbcTemplate.update(UPDATE, procedure.getTypeString(), procedure.getDateOfProcedure(),
+        jdbcTemplate.update(UPDATE, procedure.getType(), procedure.getDateOfProcedure(),
                 procedure.isCompleted());
     }
 

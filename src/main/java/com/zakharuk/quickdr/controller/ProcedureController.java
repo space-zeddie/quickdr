@@ -47,7 +47,7 @@ public class ProcedureController {
     /**
      * GET /delete  --> Delete the procedure having the passed id.
      */
-    @RequestMapping("/delete")
+    @RequestMapping("/delete-procedure")
     @ResponseBody
     public String delete(int id) {
         try {
@@ -65,7 +65,7 @@ public class ProcedureController {
      * GET /update  --> Update the name and the age for the subject in the
      * database having the passed id.
      */
-    @RequestMapping("/update")
+    @RequestMapping("/update-procedure")
     @ResponseBody
     public String update(int id, String type, String date, String compl) {
         try {
