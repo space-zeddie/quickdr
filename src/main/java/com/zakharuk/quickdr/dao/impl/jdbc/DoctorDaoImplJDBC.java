@@ -55,7 +55,7 @@ public class DoctorDaoImplJDBC implements DoctorDao {
         jdbcTemplate.update(DELETE, doctor.getId());
     }
 
-    private RowMapper<DoctorPojo> doctorPojoRowMapper = new RowMapper<ProcedurePojo>() {
+    private RowMapper<DoctorPojo> doctorPojoRowMapper = new RowMapper<DoctorPojo>() {
         public DoctorPojo mapRow(ResultSet rs, int rowNum) throws SQLException {
             return new DoctorPojo(rs.getString("name"),
                     rs.getInt("office"),
@@ -74,3 +74,4 @@ public class DoctorDaoImplJDBC implements DoctorDao {
             return doctor;
         }
     };
+}
