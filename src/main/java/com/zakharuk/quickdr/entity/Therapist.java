@@ -4,18 +4,36 @@ import com.zakharuk.quickdr.entity.Doctor;
 import com.zakharuk.quickdr.entity.Patient;
 import com.zakharuk.quickdr.entity.Procedures;
 import javafx.util.Pair;
+import javax.persistence.*;
 
+import javax.persistence.Entity;
 import java.util.*;
 
 /**
  * Created by matvii on 06.02.17.
  */
+@Entity
+@Table(name="doctors")
 public class Therapist implements Doctor {
 
+    @Id
+    @GeneratedValue
+    @Column(name="id")
+    private int id;
+
+    @Column(name="name")
     private String name;
+
+    @Column(name="office")
     private int office;
+
     private List<Patient> patients;
-    private Pair<Date, Date> workingHours;
+
+    @Column(name="whour1")
+    private Date workingHour1;
+    @Column(name="whour2")
+    private Date workingHour2;
+
     private Map<Date, Patient> appointments;
     private List<Procedures> availableProcedures;
 
@@ -33,10 +51,20 @@ public class Therapist implements Doctor {
     public Therapist(String name, int office, Pair<Date, Date> workingHours, List<Procedures> availableProcedures) {
         this.name = name;
         this.office = office;
-        this.workingHours = workingHours;
+        this.workingHour1 = workingHours.getKey();
+        this.workingHour2 = workingHours.getValue();
         this.availableProcedures = availableProcedures;
         patients = new ArrayList<Patient>();
         appointments = new HashMap<Date, Patient>();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -60,7 +88,26 @@ public class Therapist implements Doctor {
     }
 
     public void setWorkingHours(Pair<Date, Date> workingHours) {
-        this.workingHours = workingHours;
+        this.workingHour1 = workingHours.getKey();
+        this.workingHour2 = workingHours.getValue();
+    }
+
+    @Override
+    public Date getWorkingHour1() {
+        return workingHour1;
+    }
+
+    public void setWorkingHour1(Date workingHour1) {
+        this.workingHour1 = workingHour1;
+    }
+
+    @Override
+    public Date getWorkingHour2() {
+        return workingHour2;
+    }
+
+    public void setWorkingHour2(Date workingHour2) {
+        this.workingHour2 = workingHour2;
     }
 
     public void setAvailableProcedures(List<Procedures> availableProcedures) {
@@ -85,13 +132,13 @@ public class Therapist implements Doctor {
 
     @Override
     public Pair<Date, Date> getWorkingHours() {
-        return workingHours;
+        return new Pair<>(workingHour1, workingHour2);
     }
 
     @Override
     public boolean bookAppointment(Patient patient, Date at) {
         if (!appointments.keySet().contains(at) &&
-                ((workingHours.getKey().getTime()<=at.getTime()) && (at.getTime()<=workingHours.getValue().getTime()))) {
+                ((workingHour1.getTime()<=at.getTime()) && (at.getTime()<=workingHour2.getTime()))) {
             if (!patients.contains(patient))
                 patients.add(patient);
             appointments.put(at, patient);

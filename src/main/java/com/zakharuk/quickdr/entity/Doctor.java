@@ -18,4 +18,22 @@ public interface Doctor {
     List<Patient> getPatients();
     List<Procedures> getAvailableProcedures();
 
+    String getName();
+
+    void setName(String name);
+
+    int getOffice();
+
+    void setOffice(int office);
+
+    void setId(int id);
+
+    int getId();
+
+    void setWorkingHour1(Date workingHour1);
+    Date getWorkingHour1();
+
+    void setWorkingHour2(Date workingHour1);
+    Date getWorkingHour2();
+
 }
