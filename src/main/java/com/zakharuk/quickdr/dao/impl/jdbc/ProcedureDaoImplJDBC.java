@@ -35,7 +35,8 @@ public class ProcedureDaoImplJDBC implements ProcedureDao {
 
     @Override
     public Procedure getProcedureById(int id) {
-        return null;
+        System.out.println("Getting procedure: " + id);
+        return jdbcTemplate.queryForObject(GET, mapper, id);
     }
 
     @Override
