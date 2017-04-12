@@ -19,7 +19,7 @@ public class Tester {
     //    Patient patient = (Patient)context.getBean("john");
      //   doctor.examine(patient);
 
-        Patient patient1 = new ChildPatient("Anna", 12);
+        ChildPatient patient1 = new ChildPatient("Anna", 12);
         Doctor doctor1 = new Therapist("Jane", 221);
         doctor1.examine(patient1);
 

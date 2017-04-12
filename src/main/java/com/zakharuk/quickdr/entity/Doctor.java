@@ -11,11 +11,11 @@ import java.util.Map;
  */
 public interface Doctor {
 
-    void examine(Patient patient);
+    void examine(ChildPatient patient);
     Pair<Date, Date> getWorkingHours();
     boolean bookAppointment(Patient patient, Date at);
     Map<Date, Patient> getAppointments();
-    List<Patient> getPatients();
+    List<ChildPatient> getPatients();
     List<Procedures> getAvailableProcedures();
 
     String getName();

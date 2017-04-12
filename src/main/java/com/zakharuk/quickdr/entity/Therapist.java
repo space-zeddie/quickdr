@@ -28,10 +28,10 @@ public class Therapist implements Doctor {
     private int office;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinTable(name="doctor_patient", joinColumns =
-        @JoinColumn(name = "doctor_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "patient_id", referencedColumnName = "patientId"))
-    private List<Patient> patients;
+    @JoinTable(name="doctor_patient", joinColumns = {
+            @JoinColumn(name = "id")
+    })
+    private List<ChildPatient> patients;
 
     @Column(name="whour1")
     private Date workingHour1;
@@ -42,13 +42,13 @@ public class Therapist implements Doctor {
    // private List<Procedures> availableProcedures;
 
     public Therapist(){
-        patients = new ArrayList<Patient>();
+        patients = new ArrayList<ChildPatient>();
     }
 
     public Therapist(String name, int office) {
         this.name = name;
         this.office = office;
-        patients = new ArrayList<Patient>();
+        patients = new ArrayList<ChildPatient>();
         //appointments = new HashMap<Date, Patient>();
     }
 
@@ -58,7 +58,7 @@ public class Therapist implements Doctor {
         this.workingHour1 = workingHours.getKey();
         this.workingHour2 = workingHours.getValue();
         //this.availableProcedures = availableProcedures;
-        patients = new ArrayList<Patient>();
+        patients = new ArrayList<ChildPatient>();
        // appointments = new HashMap<Date, Patient>();
     }
 
@@ -87,8 +87,8 @@ public class Therapist implements Doctor {
         this.office = office;
     }
 
-    public List<Patient> getPatients() {
-        return null;//patients;
+    public List<ChildPatient> getPatients() {
+        return patients;
     }
 
     public void setWorkingHours(Pair<Date, Date> workingHours) {
@@ -123,11 +123,11 @@ public class Therapist implements Doctor {
         return null;//availableProcedures;
     }
 
-    public void setPatients(List<Patient> patients) {
+    public void setPatients(List<ChildPatient> patients) {
         this.patients = patients;
     }
 
-    public void examine(Patient patient) {
+    public void examine(ChildPatient patient) {
         if (!patients.contains(patient))
             patients.add(patient);
         patient.setDiagnosis("cancer");
