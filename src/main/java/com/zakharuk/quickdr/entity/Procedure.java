@@ -55,6 +55,14 @@ public class Procedure {
         isCompleted = completed;
     }
 
+    public String getTypeString() {
+        return typeToString(this.type);
+    }
+
+    public void setType(String type) {
+        this.type = stringToType(type);
+    }
+
     public Procedures getType() {
         return type;
     }
