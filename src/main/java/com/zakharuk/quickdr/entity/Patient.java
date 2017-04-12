@@ -10,7 +10,19 @@ import java.util.List;
 public interface Patient {
 
     String getPatientData();
-    void setDiagnosis(String diagnosis);
     List<Procedure> getAssignedProcedures();
+
+    int getPatientId();
+
+    void setPatientId(int patientId);
+
+    String getName();
+
+    void setName(String name);
+    int getAge();
+    void setAge(int age);
+    String getDiagnosis();
+    void setDiagnosis(String diagnosis);
+
 
 }
