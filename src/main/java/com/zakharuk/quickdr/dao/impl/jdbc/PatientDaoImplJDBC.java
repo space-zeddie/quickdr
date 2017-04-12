@@ -3,6 +3,7 @@ package com.zakharuk.quickdr.dao.impl.jdbc;
 import com.zakharuk.quickdr.dao.PatientDao;
 import com.zakharuk.quickdr.entity.ChildPatient;
 import com.zakharuk.quickdr.entity.Patient;
+import com.zakharuk.quickdr.pojo.PatientPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -47,9 +48,9 @@ public class PatientDaoImplJDBC implements PatientDao {
     public void savePatient(Patient patient) {
 
     }
-    private RowMapper<CarStatsPojo> carStatsPojoMapper = new RowMapper<CarStatsPojo>() {
-        public CarStatsPojo mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return new CarStatsPojo(rs.getString("name"),
+    private RowMapper<PatientPojo> carStatsPojoMapper = new RowMapper<PatientPojo>() {
+        public PatientPojo mapRow(ResultSet rs, int rowNum) throws SQLException {
+            return new PatientPojo(rs.getString("name"),
                     rs.getInt("age"),
                     rs.getString("diagnosis"));
         }
