@@ -74,18 +74,18 @@ public class Procedure {
     private Procedures stringToType(String t) {
         t = t.toLowerCase();
         switch (t) {
-            case "examination": return Procedures.EXAMINATION,
-            case "blood analysis": return Procedures.BLOOD_ANALYSIS,
-            case "operation": return Procedures.OPERATION,
+            case "examination": return Procedures.EXAMINATION;
+            case "blood analysis": return Procedures.BLOOD_ANALYSIS;
+            case "operation": return Procedures.OPERATION;
             default: return Procedures.UNKNOWN;
         }
     }
 
     private String typeToString(Procedures t) {
         switch (t) {
-            case EXAMINATION: return "examination",
-            case BLOOD_ANALYSIS: return "blood analysis",
-            case OPERATION: return "operation",
+            case EXAMINATION: return "examination";
+            case BLOOD_ANALYSIS: return "blood analysis";
+            case OPERATION: return "operation";
             default: return "unknown";
         }
     }
