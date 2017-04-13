@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -51,6 +52,11 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     @Bean
     public JdbcTemplate jdbcTemplate(){
         return new JdbcTemplate(dataSource);
+    }
+
+    @Bean
+    public Md5PasswordEncoder passwordEncoder(){
+        return new Md5PasswordEncoder();
     }
 
 }
