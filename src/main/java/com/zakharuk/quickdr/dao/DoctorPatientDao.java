@@ -17,4 +17,6 @@ public interface DoctorPatientDao {
     void removeByDoctor(int doctorId);
     void removeByPatient(int patientId);
 
+    List<Patient> getUnattendedPatients();
+    List<Doctor> getAvailableDoctors();
 }

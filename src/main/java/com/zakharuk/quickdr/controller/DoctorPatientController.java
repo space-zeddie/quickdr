@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.print.Doc;
 import java.util.List;
 
 /**
@@ -68,5 +69,29 @@ public class DoctorPatientController {
         }
         return resp.toString() + Constants.FOOTER;
     }
+
+    /**
+     * GET /patients-doctors  --> List all doctors of a patient
+     */
+    @RequestMapping("/patients-doctors")
+    @ResponseBody
+    public String listDoctors(int patientId) {
+        StringBuilder resp = new StringBuilder();
+        resp.append(Constants.HEADER);
+        try {
+            List<Doctor> doctorList = doctorPatientService.getPatientsDoctors(patientId);
+            for (Doctor p : doctorList) {
+                resp.append("<p>");
+                resp.append(p);
+                resp.append("</p>");
+            }
+        }
+        catch (Exception ex) {
+            return Constants.HEADER + "Error listing the doctors: " + ex.toString() + Constants.FOOTER;
+        }
+        return resp.toString() + Constants.FOOTER;
+    }
+
+
 
 }

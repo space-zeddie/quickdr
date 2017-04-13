@@ -49,4 +49,14 @@ public class DoctorPatientServiceImpl implements DoctorPatientService{
     public void removeByPatient(int patientId) {
         doctorPatientDao.removeByPatient(patientId);
     }
+
+    @Override
+    public List<Doctor> getAvailableDoctors() {
+        return doctorPatientDao.getAvailableDoctors();
+    }
+
+    @Override
+    public List<Patient> getUnattendedPatients() {
+        return doctorPatientDao.getUnattendedPatients();
+    }
 }

@@ -15,4 +15,7 @@ public interface DoctorPatientService {
     void update(int doctorId, int patientId);
     void removeByDoctor(int doctorId);
     void removeByPatient(int patientId);
+
+    List<Doctor> getAvailableDoctors();
+    List<Patient> getUnattendedPatients();
 }

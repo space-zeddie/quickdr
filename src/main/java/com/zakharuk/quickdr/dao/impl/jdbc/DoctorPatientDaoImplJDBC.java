@@ -36,6 +36,16 @@ public class DoctorPatientDaoImplJDBC implements DoctorPatientDao {
     private static final String DELETE_BY_PATIENT = "DELETE FROM doctor_patient WHERE patients_patientId=?";
     private static final String DELETE_BY_DOCTOR = "DELETE FROM doctor_patient WHERE id=?";
 
+    private static final String GET_UNATTENDED_PATIENTS =
+            "SELECT * FROM ChildPatients WHERE patientId NOT IN " +
+                    "(SELECT patients_patientId FROM doctor_patient)";
+    private static final String GET_AVAILABLE_DOCTORS =
+            "SELECT * FROM doctors WHERE id IN " +
+                    "(SELECT id" +
+                    " FROM doctor_patient " +
+                    " GROUP BY id" +
+                    " HAVING (COUNT(patients_patientId) < 2))";
+
     @Override
     public void assignPatientToDoctor(int doctorId, int patientId) {
         System.out.println("Assigning patient #" + patientId + " to doctor #" + doctorId);
@@ -68,6 +78,16 @@ public class DoctorPatientDaoImplJDBC implements DoctorPatientDao {
     public void removeByPatient(int patientId) {
         System.out.println("Deleting doctors of patient #" + patientId);
         jdbcTemplate.update(DELETE_BY_PATIENT, patientId);
+    }
+
+    @Override
+    public List<Patient> getUnattendedPatients() {
+        return jdbcTemplate.query(GET_UNATTENDED_PATIENTS, mapperPatient);
+    }
+
+    @Override
+    public List<Doctor> getAvailableDoctors() {
+        return jdbcTemplate.query(GET_AVAILABLE_DOCTORS, mapperDoctor);
     }
 
     private RowMapper<Doctor> mapperDoctor = new RowMapper<Doctor>() {
