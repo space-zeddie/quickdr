@@ -72,7 +72,7 @@ public class DoctorPatientController {
 
     @RequestMapping("/unattended-patients")
     @ResponseBody
-    public String listUnattendedPatients(int doctorId) {
+    public String listUnattendedPatients() {
         StringBuilder resp = new StringBuilder();
         resp.append(Constants.HEADER);
         try {
