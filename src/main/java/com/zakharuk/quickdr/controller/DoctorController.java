@@ -3,6 +3,7 @@ package com.zakharuk.quickdr.controller;
 import com.zakharuk.quickdr.entity.Doctor;
 import com.zakharuk.quickdr.entity.Procedure;
 import com.zakharuk.quickdr.entity.Therapist;
+import com.zakharuk.quickdr.service.DoctorPatientService;
 import com.zakharuk.quickdr.service.DoctorService;
 import com.zakharuk.quickdr.service.ProcedureService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ public class DoctorController {
 
     @Autowired
     private DoctorService doctorService;
+    @Autowired
+    private DoctorPatientService doctorPatientService;
 
     private SimpleDateFormat formatter = new SimpleDateFormat("HH-mm");
 
@@ -57,6 +60,7 @@ public class DoctorController {
             Doctor doctor = new Therapist();
             doctor.setId(id);
             doctorService.remove(doctor);
+            doctorPatientService.removeByDoctor(id);
         }
         catch (Exception ex) {
             return Constants.HEADER + "Error deleting the doctor:" + ex.toString() + Constants.FOOTER;

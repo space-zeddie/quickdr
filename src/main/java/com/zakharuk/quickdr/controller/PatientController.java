@@ -2,6 +2,7 @@ package com.zakharuk.quickdr.controller;
 
 import com.zakharuk.quickdr.entity.ChildPatient;
 import com.zakharuk.quickdr.entity.Patient;
+import com.zakharuk.quickdr.service.DoctorPatientService;
 import com.zakharuk.quickdr.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,8 @@ public class PatientController {
 
     @Autowired
     private PatientService patientService;
+    @Autowired
+    private DoctorPatientService doctorPatientService;
 
     /**
      * GET /create  --> Create a new patient and save it in the database.
@@ -46,6 +49,7 @@ public class PatientController {
             Patient patient = new ChildPatient();
             patient.setPatientId(id);
             patientService.remove(patient);
+            doctorPatientService.removeByPatient(id);
         }
         catch (Exception ex) {
             return Constants.HEADER + "Error deleting the patient:" + ex.toString() + Constants.FOOTER;
