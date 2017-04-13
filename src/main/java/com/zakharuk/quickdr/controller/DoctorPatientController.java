@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 /**
  * Created by matvii on 13.04.17.
  */
@@ -40,9 +42,31 @@ public class DoctorPatientController {
                 doctorPatientService.assignPatientToDoctor(doctorId, patientId);
         }
         catch (Exception ex) {
-            return Constants.HEADER + "Error updating the doctor: " + ex.toString() + Constants.FOOTER;
+            return Constants.HEADER + "Error assigning the patient: " + ex.toString() + Constants.FOOTER;
         }
-        return Constants.HEADER + "Doctor succesfully updated!" + Constants.FOOTER;
+        return Constants.HEADER + "Patient succesfully assigned!" + Constants.FOOTER;
+    }
+
+    /**
+     * GET /doctors-patients  --> List all patients of a doctor
+     */
+    @RequestMapping("/doctors-patients")
+    @ResponseBody
+    public String listPatients(int doctorId) {
+        StringBuilder resp = new StringBuilder();
+        resp.append(Constants.HEADER);
+        try {
+            List<Patient> patientList = doctorPatientService.getDoctorsPatients(doctorId);
+            for (Patient p : patientList) {
+                resp.append("<p>");
+                resp.append(p);
+                resp.append("</p>");
+            }
+        }
+        catch (Exception ex) {
+            return Constants.HEADER + "Error listing the patients: " + ex.toString() + Constants.FOOTER;
+        }
+        return resp.toString() + Constants.FOOTER;
     }
 
 }

@@ -84,6 +84,7 @@ public class DoctorPatientDaoImplJDBC implements DoctorPatientDao {
         public Patient mapRow(ResultSet rs, int rowNum) throws SQLException {
             Patient patient = new ChildPatient();
             patient.setPatientId(rs.getInt("patientId"));
+            patient.setName(rs.getString("name"));
             patient.setAge(rs.getInt("age"));
             patient.setDiagnosis(rs.getString("diagnosis"));
             return patient;

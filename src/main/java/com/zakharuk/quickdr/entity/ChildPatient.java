@@ -49,6 +49,16 @@ public class ChildPatient implements Patient {
     }
 
     @Override
+    public String toString() {
+        return "ChildPatient{" +
+                "patientId=" + patientId +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", diagnosis='" + diagnosis + '\'' +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         return patientId;
     }
