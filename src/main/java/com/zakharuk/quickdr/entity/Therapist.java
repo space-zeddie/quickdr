@@ -107,6 +107,15 @@ public class Therapist implements Doctor {
     }
 
     @Override
+    public String toString() {
+        return "Therapist{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", office=" + office +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         return id;
     }

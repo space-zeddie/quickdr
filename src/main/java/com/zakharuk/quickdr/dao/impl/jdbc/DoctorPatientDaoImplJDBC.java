@@ -44,7 +44,8 @@ public class DoctorPatientDaoImplJDBC implements DoctorPatientDao {
                     "(SELECT id" +
                     " FROM doctor_patient " +
                     " GROUP BY id" +
-                    " HAVING (COUNT(patients_patientId) < 2))";
+                    " HAVING (COUNT(patients_patientId) < 10)) OR " +
+                    "(SELECT id FROM doctors WHERE id NOT IN (SELECT id FROM doctor_patient))";
 
     @Override
     public void assignPatientToDoctor(int doctorId, int patientId) {
@@ -93,6 +94,7 @@ public class DoctorPatientDaoImplJDBC implements DoctorPatientDao {
     private RowMapper<Doctor> mapperDoctor = new RowMapper<Doctor>() {
         public Doctor mapRow(ResultSet rs, int rowNum) throws SQLException {
             Doctor doctor = new Therapist();
+            doctor.setId(rs.getInt("id"));
             doctor.setName(rs.getString("name"));
             doctor.setOffice(rs.getInt("office"));
             doctor.setWorkingHour1(rs.getDate("whour1"));

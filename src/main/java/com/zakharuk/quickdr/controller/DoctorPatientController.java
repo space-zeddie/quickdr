@@ -70,6 +70,25 @@ public class DoctorPatientController {
         return resp.toString() + Constants.FOOTER;
     }
 
+    @RequestMapping("/unattended-patients")
+    @ResponseBody
+    public String listUnattendedPatients(int doctorId) {
+        StringBuilder resp = new StringBuilder();
+        resp.append(Constants.HEADER);
+        try {
+            List<Patient> patientList = doctorPatientService.getUnattendedPatients();
+            for (Patient p : patientList) {
+                resp.append("<p>");
+                resp.append(p);
+                resp.append("</p>");
+            }
+        }
+        catch (Exception ex) {
+            return Constants.HEADER + "Error listing the patients: " + ex.toString() + Constants.FOOTER;
+        }
+        return resp.toString() + Constants.FOOTER;
+    }
+
     /**
      * GET /patients-doctors  --> List all doctors of a patient
      */
@@ -80,6 +99,25 @@ public class DoctorPatientController {
         resp.append(Constants.HEADER);
         try {
             List<Doctor> doctorList = doctorPatientService.getPatientsDoctors(patientId);
+            for (Doctor p : doctorList) {
+                resp.append("<p>");
+                resp.append(p);
+                resp.append("</p>");
+            }
+        }
+        catch (Exception ex) {
+            return Constants.HEADER + "Error listing the doctors: " + ex.toString() + Constants.FOOTER;
+        }
+        return resp.toString() + Constants.FOOTER;
+    }
+
+    @RequestMapping("/available-doctors")
+    @ResponseBody
+    public String listAvailableDoctors() {
+        StringBuilder resp = new StringBuilder();
+        resp.append(Constants.HEADER);
+        try {
+            List<Doctor> doctorList = doctorPatientService.getAvailableDoctors();
             for (Doctor p : doctorList) {
                 resp.append("<p>");
                 resp.append(p);
