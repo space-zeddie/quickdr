@@ -13,11 +13,10 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "users")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
 
     @NotNull
+    @Column(name="username")
+    @Id
     private String name;
 
     @NotNull
@@ -26,13 +25,26 @@ public class User {
     @NotNull
     private String role;
 
+    @NotNull
+    private boolean enabled;
+
     public User() {
     }
+
+
 
     public User(String name, String password, String role) {
         this.name = name;
         this.password = password;
         this.role = role;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     @Override
