@@ -53,21 +53,12 @@ public class User {
         res.append("<i>");
         res.append(getName());
         res.append("</i>");
-        res.append("(#" + getId() + ")");
         res.append("<br>");
         res.append("Role: ");
         res.append(getRole());
         res.append("<br>");
         res.append("<br>");
         return res.toString();
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {
