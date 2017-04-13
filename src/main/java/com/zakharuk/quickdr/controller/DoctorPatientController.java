@@ -1,8 +1,10 @@
 package com.zakharuk.quickdr.controller;
 
+import com.zakharuk.quickdr.dao.DoctorPatientDao;
 import com.zakharuk.quickdr.entity.ChildPatient;
 import com.zakharuk.quickdr.entity.Doctor;
 import com.zakharuk.quickdr.entity.Patient;
+import com.zakharuk.quickdr.service.DoctorPatientService;
 import com.zakharuk.quickdr.service.DoctorService;
 import com.zakharuk.quickdr.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class DoctorPatientController {
 
     @Autowired
-    private PatientService patientService;
-    @Autowired
-    private DoctorService doctorService;
+    private DoctorPatientService doctorPatientService;
 
     /**
      * GET /assign-patient  --> Assign a patient to a doctor by id

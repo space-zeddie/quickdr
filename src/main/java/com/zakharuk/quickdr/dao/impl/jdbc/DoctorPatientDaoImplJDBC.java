@@ -10,6 +10,7 @@ import com.zakharuk.quickdr.pojo.DoctorPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +19,7 @@ import java.util.List;
 /**
  * Created by matvii on 13.04.17.
  */
+@Repository
 public class DoctorPatientDaoImplJDBC implements DoctorPatientDao {
 
     @Autowired
