@@ -25,8 +25,12 @@ public class DoctorPatientDaoImplJDBC implements DoctorPatientDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private static final String GET_BY_DOCTOR = "SELECT * FROM doctor_patient WHERE id=?";
-    private static final String GET_BY_PATIENT = "SELECT * FROM doctor_patient WHERE patients_patientId=?";
+    private static final String GET_BY_DOCTOR =
+            "SELECT * FROM ChildPatients WHERE patientId IN " +
+                    "(SELECT patients_patientId FROM doctor_patient WHERE id=?)";
+    private static final String GET_BY_PATIENT =
+            "SELECT * FROM doctors WHERE id IN " +
+                    "(SELECT id FROM doctor_patient WHERE patients_patientId=?)";
     private static final String INSERT = "INSERT INTO doctor_patient (id, patients_patientId) VALUES (?,?)";
     private static final String UPDATE = "UPDATE doctors SET id=?, patients_patientId=?";
     private static final String DELETE_BY_PATIENT = "DELETE FROM doctor_patient WHERE patients_patientId=?";
