@@ -21,6 +21,11 @@ public class DoctorPatientController {
     @Autowired
     private DoctorPatientService doctorPatientService;
 
+    @Autowired
+    private DoctorService doctorService;
+    @Autowired
+    private PatientService patientService;
+
     /**
      * GET /assign-patient  --> Assign a patient to a doctor by id
      */
@@ -31,7 +36,8 @@ public class DoctorPatientController {
             Doctor doctor = doctorService.getDoctorById(doctorId);
             Patient patient = patientService.getPatientById(patientId);
             doctor.examine((ChildPatient) patient);
-            doctorService.update(doctor);
+            if (!doctorPatientService.getDoctorsPatients(doctorId).contains(patient))
+                doctorPatientService.assignPatientToDoctor(doctorId, patientId);
         }
         catch (Exception ex) {
             return Constants.HEADER + "Error updating the doctor: " + ex.toString() + Constants.FOOTER;

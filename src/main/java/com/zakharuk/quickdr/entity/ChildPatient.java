@@ -38,6 +38,21 @@ public class ChildPatient implements Patient {
         assignedProcedures = new ArrayList<Procedure>();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ChildPatient that = (ChildPatient) o;
+
+        return patientId == that.patientId;
+    }
+
+    @Override
+    public int hashCode() {
+        return patientId;
+    }
+
     public void addProcedure(Procedure procedure) { assignedProcedures.add(procedure); }
 
     public int getPatientId() {

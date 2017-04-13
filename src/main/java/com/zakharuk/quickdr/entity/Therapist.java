@@ -97,6 +97,21 @@ public class Therapist implements Doctor {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Therapist therapist = (Therapist) o;
+
+        return id == therapist.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
+
+    @Override
     public Date getWorkingHour1() {
         return workingHour1;
     }
