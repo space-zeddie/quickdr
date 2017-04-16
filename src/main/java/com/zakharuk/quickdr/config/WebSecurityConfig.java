@@ -35,7 +35,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/index").permitAll()
+                .antMatchers("/", "/index", "/createuser", "/doctors-patients",
+                        "/unattended-patients", "/patients-doctors", "/available-doctors",
+                        "/booked-doctors", "/patients-one-doctor").permitAll()
+
+                .antMatchers("/register-patient", "/assign-patient", "/delete-doctor",
+                        "/update-doctor", "/create-doctor", "/register-patient", "/delete",
+                        "/edit-patient").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -43,52 +49,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
-                .permitAll();
+                .permitAll()
+                .and();
     }
-    /*@Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
-                .authorizeRequests()
-                .antMatchers("/", "/order/receipt/*", "/pre_logout", "/stats").authenticated()
-                .antMatchers("/car/*", "/dept/*", "/worker/*").hasRole(ADMIN_ROLE)
-                .antMatchers("/client/*", "/order/create").hasRole(CLIENT_ROLE)
-                .antMatchers("/staff/dispatcher/*").hasRole(DISPATCHER_ROLE)
-                .antMatchers("/staff/driver/*").hasRole(DRIVER_ROLE)
-                .antMatchers("/staff/profile").hasAnyRole(DISPATCHER_ROLE, DRIVER_ROLE)
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .usernameParameter("lgn")
-                .passwordParameter("pswd")
-                .defaultSuccessUrl("/", false)
-                .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
-                .deleteCookies("JSESSIONID")
-                .invalidateHttpSession(true)
-                .and()
-                .exceptionHandling()
-                .accessDeniedPage("/403")
-                .and()
-                .rememberMe()
-                .key("rem-me-key")
-                .rememberMeParameter("ttx-remember-me")
-                .rememberMeCookieName("ttx-remember-me")
-                .tokenValiditySeconds(86400)
-                .and()
-                .sessionManagement()
-                .maximumSessions(1).expiredUrl("/pre_logout")
-                .and().and()
-                .csrf().disable();
-    }*/
+
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().passwordEncoder(passwordEncoder).dataSource(dataSource)
                 .usersByUsernameQuery(
-                        "select username,password, enabled from users where username=?")
+                        "select username,password, enabled, role from users where username=?")
                 .authoritiesByUsernameQuery(
-                        "select username, role from user_roles where username=?");
+                        "select username, role from users where username=?");
     }
 }

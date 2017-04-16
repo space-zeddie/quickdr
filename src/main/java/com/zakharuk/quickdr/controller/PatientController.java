@@ -27,16 +27,17 @@ public class PatientController {
     @ResponseBody
     public String create(String name, int age, String diagnosis) {
         String patientId = "";
+        Patient patient = null;
         try {
-            Patient patient = new ChildPatient(name, age);
+            patient = new ChildPatient(name, age);
             patient.setDiagnosis(diagnosis);
             patientService.addPatient(patient);
             patientId = String.valueOf(patient.getPatientId());
         }
         catch (Exception ex) {
-            return Constants.HEADER +  "Error registering the partient: " + ex.toString() + Constants.FOOTER;
+            return Constants.HEADER +  "Error registering the partient: " + patient + Constants.FOOTER;
         }
-        return Constants.HEADER + "Patient succesfully registered with id = " + patientId + Constants.FOOTER;
+        return Constants.HEADER + "Patient succesfully registered with " + patient + Constants.FOOTER;
     }
 
     /**
@@ -82,15 +83,16 @@ public class PatientController {
     @RequestMapping("/update")
     @ResponseBody
     public String updateSubject(int id, String name, int age, String diagnosis) {
+        Patient patient = null;
         try {
-            Patient patient = patientService.getPatientById(id);
+            patient = patientService.getPatientById(id);
             patient.setName(name);
             patient.setAge(age);
             patient.setDiagnosis(diagnosis);
             patientService.savePatient(patient);
         }
         catch (Exception ex) {
-            return Constants.HEADER + "Error updating the patient: " + ex.toString() + Constants.FOOTER;
+            return Constants.HEADER + "Error updating the patient: " + patient.toString() + Constants.FOOTER;
         }
         return Constants.HEADER + "Patient succesfully updated!" + Constants.FOOTER;
     }

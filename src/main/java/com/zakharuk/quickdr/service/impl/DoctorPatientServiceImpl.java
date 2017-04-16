@@ -54,9 +54,18 @@ public class DoctorPatientServiceImpl implements DoctorPatientService{
     public List<Doctor> getAvailableDoctors() {
         return doctorPatientDao.getAvailableDoctors();
     }
+    @Override
+    public List<Doctor> getBookedDoctors() {
+        return doctorPatientDao.getBookedDoctors();
+    }
 
     @Override
     public List<Patient> getUnattendedPatients() {
         return doctorPatientDao.getUnattendedPatients();
+    }
+
+    @Override
+    public List<Patient> getPatientsWithOneDoctor(int doctorId) {
+        return doctorPatientDao.getPatientsWithOneDoctor(doctorId);
     }
 }

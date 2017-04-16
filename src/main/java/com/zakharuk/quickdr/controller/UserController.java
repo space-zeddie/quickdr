@@ -22,6 +22,7 @@ public class UserController {
         String userId = "";
         try {
             User user = new User(name, password, role);
+            user.setEnabled(true);
             userDao.add(user);
         }
         catch (Exception ex) {
@@ -60,4 +61,5 @@ public class UserController {
         }
         return Constants.HEADER + "User succesfully updated!" + Constants.FOOTER;
     }
+
 }
