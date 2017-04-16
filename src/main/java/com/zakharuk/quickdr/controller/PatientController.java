@@ -5,6 +5,9 @@ import com.zakharuk.quickdr.entity.Patient;
 import com.zakharuk.quickdr.service.DoctorPatientService;
 import com.zakharuk.quickdr.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.ws.rs.Path;
+import java.util.List;
 
 /**
  * Created by matvii on 12.04.17.
@@ -27,22 +31,24 @@ public class PatientController {
     /**
      * GET /create  --> Create a new patient and save it in the database.
      */
-    @RequestMapping("/register-patient")
+    @RequestMapping(value="/register-patient", method = RequestMethod.POST)
     @ResponseBody
-    public String create(String name, int age, String diagnosis) {
-        String patientId = "";
+    public Patient create(@PathVariable  String name, @PathVariable int age, @PathVariable String diagnosis) {
         Patient patient = null;
         try {
             patient = new ChildPatient(name, age);
             patient.setDiagnosis(diagnosis);
+            System.err.println("hello");
             patientService.addPatient(patient);
-            patientId = String.valueOf(patient.getPatientId());
         }
         catch (Exception ex) {
-            return Constants.HEADER +  "Error registering the partient: " + patient + Constants.FOOTER;
+            //return Constants.HEADER +  "Error registering the partient: " + patient + Constants.FOOTER;
+            return null;
         }
-        return Constants.HEADER + "Patient succesfully registered with " + patient + Constants.FOOTER;
+        //return Constants.HEADER + "Patient succesfully registered with " + patient + Constants.FOOTER;
+        return patient;
     }
+
 
     /**
      * GET /delete  --> Delete the patient having the passed id.
@@ -66,7 +72,18 @@ public class PatientController {
      * GET /get-by-name  --> Return the id for the patient having the passed
      * name.
      */
-    @RequestMapping(value="/get-patient", method = RequestMethod.GET)
+    @RequestMapping(value = "/patient/{id}", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Patient> getUser(@PathVariable("id") int id) {
+        System.out.println("Fetching User with id " + id);
+        Patient patient = patientService.getPatientById(id);
+        if (patient == null) {
+            System.out.println("User with id " + id + " not found");
+            return new ResponseEntity<Patient>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Patient>(patient, HttpStatus.OK);
+    }
+   /* @RequestMapping(value="/get-patient", method = RequestMethod.GET)
     @ResponseBody
     public Patient getById(int id) {
         Patient patient;
@@ -77,7 +94,7 @@ public class PatientController {
             return null;
         }
         return patient;
-    }
+    }*/
 
     /**
      * GET /update  --> Update the name and the age for the subject in the
