@@ -19,4 +19,6 @@ public interface DoctorPatientDao {
 
     List<Patient> getUnattendedPatients();
     List<Doctor> getAvailableDoctors();
+    List<Patient> getPatientsWithOneDoctor(int doctorId);
+    List<Doctor> getBookedDoctors();
 }

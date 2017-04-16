@@ -18,4 +18,6 @@ public interface DoctorPatientService {
 
     List<Doctor> getAvailableDoctors();
     List<Patient> getUnattendedPatients();
+    List<Patient> getPatientsWithOneDoctor(int doctorId);
+    List<Doctor> getBookedDoctors();
 }

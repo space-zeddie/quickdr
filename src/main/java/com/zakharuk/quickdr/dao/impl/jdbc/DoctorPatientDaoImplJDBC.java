@@ -5,8 +5,6 @@ import com.zakharuk.quickdr.entity.ChildPatient;
 import com.zakharuk.quickdr.entity.Doctor;
 import com.zakharuk.quickdr.entity.Patient;
 import com.zakharuk.quickdr.entity.Therapist;
-import com.zakharuk.quickdr.pojo.DoctorPatientPojo;
-import com.zakharuk.quickdr.pojo.DoctorPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -40,13 +38,30 @@ public class DoctorPatientDaoImplJDBC implements DoctorPatientDao {
             "SELECT * FROM ChildPatients WHERE patientId NOT IN " +
                     "(SELECT patients_patientId FROM doctor_patient)";
     private static final String GET_AVAILABLE_DOCTORS =
-            "SELECT * FROM doctors WHERE id IN " +
+            "(SELECT * FROM doctors WHERE id IN " +
                     "(SELECT id" +
                     " FROM doctor_patient " +
                     " GROUP BY id" +
-                    " HAVING (COUNT(patients_patientId) < 10)) OR " +
-                    "(SELECT id FROM doctors WHERE id NOT IN (SELECT id FROM doctor_patient))";
+                    " HAVING COUNT(patients_patientId) < 3)) UNION " +
+                    "(SELECT * FROM doctors WHERE id IN " +
+                    "(SELECT id FROM doctors WHERE id NOT IN (SELECT id FROM doctor_patient)))";
 
+    private static final String GET_BOOKED_DOCTORS =
+            "(SELECT * FROM doctors WHERE id NOT IN " +
+                    "(SELECT id" +
+                    " FROM doctor_patient " +
+                    " GROUP BY id" +
+                    " HAVING COUNT(patients_patientId) < 3)) UNION " +
+                    "(SELECT * FROM doctors WHERE id NOT IN " +
+                    "(SELECT id FROM doctors WHERE id NOT IN (SELECT id FROM doctor_patient)))";
+
+    private static final String PATIENTS_WITH_ONE_DOCTOR =
+            "SELECT * FROM ChildPatients WHERE patientId IN" +
+                    "(SELECT patients_patientId " +
+                    " FROM doctor_patient " +
+                    " WHERE patients_patientId IN" +
+                    "      (SELECT patients_patientId FROM doctor_patient WHERE id=?) AND NOT patients_patientId IN " +
+                    "      (SELECT patients_patientId FROM doctor_patient WHERE id <> ?));";
     @Override
     public void assignPatientToDoctor(int doctorId, int patientId) {
         System.out.println("Assigning patient #" + patientId + " to doctor #" + doctorId);
@@ -89,6 +104,17 @@ public class DoctorPatientDaoImplJDBC implements DoctorPatientDao {
     @Override
     public List<Doctor> getAvailableDoctors() {
         return jdbcTemplate.query(GET_AVAILABLE_DOCTORS, mapperDoctor);
+    }
+
+    @Override
+    public List<Doctor> getBookedDoctors() {
+        return jdbcTemplate.query(GET_BOOKED_DOCTORS, mapperDoctor);
+    }
+
+
+    @Override
+    public List<Patient> getPatientsWithOneDoctor(int doctorId) {
+        return jdbcTemplate.query(PATIENTS_WITH_ONE_DOCTOR, mapperPatient, doctorId, doctorId);
     }
 
     private RowMapper<Doctor> mapperDoctor = new RowMapper<Doctor>() {

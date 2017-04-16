@@ -35,8 +35,9 @@ public class DoctorController {
     @ResponseBody
     public String create(String name, int office, String whour1, String whour2) {
         String id = "";
+        Doctor doctor = null;
         try {
-            Doctor doctor = new Therapist();
+            doctor = new Therapist();
             doctor.setName(name);
             doctor.setOffice(office);
             doctor.setWorkingHour1(formatter.parse(whour1));
@@ -45,9 +46,9 @@ public class DoctorController {
             id = String.valueOf(doctor.getId());
         }
         catch (Exception ex) {
-            return Constants.HEADER +  "Error registering the doctor: " + ex.toString() + Constants.FOOTER;
+            return Constants.HEADER +  "Error registering the doctor: " + doctor.toString() + Constants.FOOTER;
         }
-        return Constants.HEADER + "Doctor succesfully registered with id = " + id + Constants.FOOTER;
+        return Constants.HEADER + "Doctor succesfully registered " + doctor + Constants.FOOTER;
     }
 
     /**
@@ -75,8 +76,9 @@ public class DoctorController {
     @RequestMapping("/update-doctor")
     @ResponseBody
     public String update(int id, String name, int office, String whour1, String whour2) {
+        Doctor doctor = null;
         try {
-            Doctor doctor = doctorService.getDoctorById(id);
+            doctor = doctorService.getDoctorById(id);
             doctor.setName(name);
             doctor.setOffice(office);
             doctor.setWorkingHour1(formatter.parse(whour1));
@@ -84,7 +86,7 @@ public class DoctorController {
             doctorService.update(doctor);
         }
         catch (Exception ex) {
-            return Constants.HEADER + "Error updating the doctor: " + ex.toString() + Constants.FOOTER;
+            return Constants.HEADER + "Error updating the doctor: " + doctor.toString() + Constants.FOOTER;
         }
         return Constants.HEADER + "Doctor succesfully updated!" + Constants.FOOTER;
     }
