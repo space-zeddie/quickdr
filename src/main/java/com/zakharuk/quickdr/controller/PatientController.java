@@ -6,8 +6,12 @@ import com.zakharuk.quickdr.service.DoctorPatientService;
 import com.zakharuk.quickdr.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.ws.rs.Path;
 
 /**
  * Created by matvii on 12.04.17.
@@ -62,19 +66,18 @@ public class PatientController {
      * GET /get-by-name  --> Return the id for the patient having the passed
      * name.
      */
-    /*@RequestMapping("/get-by-name")
+    @RequestMapping(value="/get-patient", method = RequestMethod.GET)
     @ResponseBody
-    public String getByName(String name) {
-        String subjectId = "";
+    public Patient getById(int id) {
+        Patient patient;
         try {
-            Subject subject = subjectDao.findByName(name);
-            subjectId = String.valueOf(subject.getId());
+            patient = patientService.getPatientById(id);
         }
         catch (Exception ex) {
-            return HEADER + "Subject not found" + FOOTER;
+            return null;
         }
-        return HEADER + "The subject id is: " + subjectId + FOOTER;
-    }*/
+        return patient;
+    }
 
     /**
      * GET /update  --> Update the name and the age for the subject in the
