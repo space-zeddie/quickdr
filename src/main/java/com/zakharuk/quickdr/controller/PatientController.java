@@ -5,14 +5,13 @@ import com.zakharuk.quickdr.entity.Patient;
 import com.zakharuk.quickdr.service.DoctorPatientService;
 import com.zakharuk.quickdr.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.ws.rs.Path;
 import java.util.List;
@@ -47,6 +46,54 @@ public class PatientController {
         }
         //return Constants.HEADER + "Patient succesfully registered with " + patient + Constants.FOOTER;
         return patient;
+    }
+    @RequestMapping(value = "/patient/", method = RequestMethod.POST)
+    public ResponseEntity<Void> createPatient(@RequestBody Patient patient, UriComponentsBuilder ucBuilder) {
+        System.out.println("Creating Patient " + patient.getName());
+
+        /*if (patientService.(patient)) {
+            System.out.println("A User with name " + patient.getName() + " already exist");
+            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+        }*/
+
+        patientService.savePatient(patient);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand(patient.getPatientId()).toUri());
+        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/patient/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Patient> updatePatient(@PathVariable("id") int id, @RequestBody Patient patient) {
+        System.out.println("Updating Patient " + id);
+
+        Patient currentPatient = patientService.getPatientById(id);
+
+        if (currentPatient==null) {
+            System.out.println("Patient with id " + id + " not found");
+            return new ResponseEntity<Patient>(HttpStatus.NOT_FOUND);
+        }
+
+        currentPatient.setName(patient.getName());
+        currentPatient.setAge(patient.getAge());
+        currentPatient.setDiagnosis(patient.getDiagnosis());
+
+        patientService.savePatient(currentPatient);
+        return new ResponseEntity<Patient>(currentPatient, HttpStatus.OK);
+    }
+
+
+    @RequestMapping(value = "/patient/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Patient> deletePatient(@PathVariable("id") int id) {
+        System.out.println("Fetching & Deleting Patient with id " + id);
+
+        Patient patient = patientService.getPatientById(id);
+        if (patient == null) {
+            System.out.println("Unable to delete Patient with id " + id + " not found");
+            return new ResponseEntity<Patient>(HttpStatus.NOT_FOUND);
+        }
+
+        patientService.remove(patient);
+        return new ResponseEntity<Patient>(HttpStatus.NO_CONTENT);
     }
 
 
