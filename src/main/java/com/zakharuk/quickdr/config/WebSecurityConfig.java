@@ -25,11 +25,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private Md5PasswordEncoder passwordEncoder;
 
-
-
-    private static final String ADMIN_ROLE = "ADMIN";
-    private static final String PATIENT_ROLE = "PATIENT";
-    private static final String DOCTOR_ROLE = "DOCTOR";
+    private static final String ADMIN_ROLE = "admin";
+    private static final String PATIENT_ROLE = "patient";
+    private static final String DOCTOR_ROLE = "doctor";
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -41,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/register-patient", "/assign-patient", "/delete-doctor",
                         "/update-doctor", "/create-doctor", "/register-patient", "/delete",
-                        "/edit-patient").permitAll()
+                        "/edit-patient").hasAnyAuthority(ADMIN_ROLE, DOCTOR_ROLE)
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
