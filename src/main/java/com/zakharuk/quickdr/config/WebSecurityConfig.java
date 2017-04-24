@@ -33,6 +33,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                .antMatchers("/", "/css", "/js", "/css/fonts")
+                .permitAll()
                 .antMatchers("/", "/index", "/createuser", "/doctors-patients",
                         "/unattended-patients", "/patients-doctors", "/available-doctors",
                         "/booked-doctors", "/patients-one-doctor").permitAll()
