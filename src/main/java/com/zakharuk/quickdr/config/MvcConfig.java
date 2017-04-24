@@ -24,7 +24,6 @@ import javax.transaction.TransactionManager;
  * Created by matvii on 10.04.17.
  */
 @Configuration
-@EnableWebMvc
 public class MvcConfig extends WebMvcConfigurerAdapter {
 
     @Autowired
@@ -42,7 +41,9 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
    @Override
    public void addResourceHandlers(ResourceHandlerRegistry registry) {
        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
-   }
+       registry.addResourceHandler("/resources/**")
+               .addResourceLocations("/resources/");
+    }
 
     @Bean
     public CacheManager cacheManager() {

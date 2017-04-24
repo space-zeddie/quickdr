@@ -63,12 +63,12 @@ public class Constants {
             "    <link href=\"css/bootstrap.min.css\"\n" +
             "          th:href=\"@{css/bootstrap.min.css}\"\n" +
             "          rel=\"stylesheet\" media=\"screen\" />\n" +
-            "    <script src=\"css/js/jq.js\"\n" +
-            "            th:src=\"@{css/js/jq.js}\"></script>\n" +
-            "    <script src=\"css/js/bootstrap.js\"\n" +
-            "            th:src=\"@{css/js/bootstrap.js}\"></script>\n" +
-            "    <script src=\"css/js/main.js\"\n" +
-            "            th:src=\"@{css/js/main.js}\"></script>\n" +
+            "    <script src=\"js/jq.js\"\n" +
+            "            th:src=\"@{js/jq.js}\"></script>\n" +
+            "    <script src=\"js/bootstrap.js\"\n" +
+            "            th:src=\"@{js/bootstrap.js}\"></script>\n" +
+            "    <script src=\"js/main.js\"\n" +
+            "            th:src=\"@{js/main.js}\"></script>\n" +
             "    <link href=\"../static/css/main.css\"\n" +
             "          th:href=\"@{css/main.css}\" rel=\"stylesheet\" media=\"screen\"/>\n" +
             "</head>\n" +

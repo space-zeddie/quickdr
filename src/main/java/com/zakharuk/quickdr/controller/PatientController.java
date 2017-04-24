@@ -82,7 +82,7 @@ public class PatientController {
      */
     @RequestMapping("/update")
     @ResponseBody
-    public String updateSubject(int id, String name, int age, String diagnosis) {
+    public String updatePatient(int id, String name, int age, String diagnosis) {
         Patient patient = null;
         try {
             patient = patientService.getPatientById(id);
@@ -205,9 +205,9 @@ public class PatientController {
         res.append("<div>");
         res.append("Name <input type=\"text\" id=\"name\" name=\"name\" th:text=\"${name}\" value=\""
                 + patient.getName() +"\" /><br />");
-        res.append("Age <input type=\"text\" id=\"credits\" name=\"credits\" th:text=\"${credits}\" value=\""
+        res.append("Age <input type=\"text\" id=\"age\" name=\"age\" th:text=\"${age}\" value=\""
                 + patient.getAge() +"\" /><br />");
-        res.append("Diagnosis <input type=\"text\" id=\"annotation\" name=\"annotation\" th:text=\"${annotation}\" value=\""
+        res.append("Diagnosis <input type=\"text\" id=\"diagnosis\" name=\"diagnosis\" th:text=\"${diagnosis}\" value=\""
                 + patient.getDiagnosis() +"\" /><br />");
         res.append("<a id=\"" + patient.getPatientId() + "\" href=\"/\" class = \"btn btn-info lnk_edit\">Update</a>");
         res.append(Constants.FOOTER);
