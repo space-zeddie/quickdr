@@ -20,6 +20,8 @@
 <body>
 <div class="container">
     <div class="jumbotron">
+        Logged in user: <b th:inline="text"> [[${#httpServletRequest.remoteUser}]] </b>
+        </br>
         <!--<a href="/all" class="btn btn-primary">List all subjects</a>
         <a href="/all-recommended" class="btn btn-primary">List all recommended subjects</a>
 

@@ -117,7 +117,7 @@ public class DoctorPatientController {
             List<Doctor> doctorList = doctorPatientService.getPatientsDoctors(patientId);
             for (Doctor p : doctorList) {
                 resp.append("<p>");
-                resp.append(p);
+                resp.append(doctorDisplay(p));
                 resp.append("</p>");
             }
         }
@@ -185,7 +185,7 @@ public class DoctorPatientController {
         return resp.toString() + Constants.FOOTER;
     }
 
-    private String patientDisplayDoctorsPatients(Patient patient) {
+    private static String patientDisplayDoctorsPatients(Patient patient) {
         StringBuilder resp = new StringBuilder();
         resp.append(patient.toString());
         resp.append("</br>");
@@ -195,13 +195,19 @@ public class DoctorPatientController {
         return resp.toString();
     }
 
-    private String patientDisplayUnattendedPatients(Patient patient) {
+    private static String patientDisplayUnattendedPatients(Patient patient) {
         StringBuilder resp = new StringBuilder();
         resp.append(patient.toString());
         resp.append("</br>");
         resp.append(Constants.editPatientBtn(patient.getPatientId()));
         // resp.append("</br>");
         resp.append(Constants.assignPatientBtn(patient.getPatientId(), 1));
+        return resp.toString();
+    }
+
+    private String doctorDisplay(Doctor doctor) {
+        StringBuilder resp = new StringBuilder();
+        resp.append(doctor.toString());
         return resp.toString();
     }
 
