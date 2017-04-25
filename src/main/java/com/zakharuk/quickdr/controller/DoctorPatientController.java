@@ -141,6 +141,30 @@ public class DoctorPatientController {
         return resp.toString() + Constants.FOOTER;
     }
 
+    @RequestMapping("/my-med-record")
+    @ResponseBody
+    public String myMedRecord() {
+        Patient patient = null;
+        StringBuilder resp = new StringBuilder();
+        resp.append(Constants.HEADER);
+        try {
+            patient = patientService.findByName(Constants.getCurrentUser());
+            resp.append("<div class='jumbotron'>");
+            resp.append(showPatientRecord(patient));
+            List<Doctor> doctorList = doctorPatientService.getPatientsDoctors(patient.getPatientId());
+            for (Doctor p : doctorList) {
+                resp.append("<p>");
+                resp.append(doctorDisplay(p));
+                resp.append("</p>");
+            }
+            resp.append("</div>");
+            resp.append(Constants.FOOTER);
+            return resp.toString();
+        }catch (Exception ex) {
+            return Constants.HEADER + "Error retrieving the record: " + ex.toString() + Constants.FOOTER;
+        }
+    }
+
     @RequestMapping("/available-doctors")
     @ResponseBody
     public String listAvailableDoctors() {
@@ -199,9 +223,9 @@ public class DoctorPatientController {
         return resp.toString() + Constants.FOOTER;
     }
 
-    private static String patientDisplayDoctorsPatients(Patient patient) {
+    private String patientDisplayDoctorsPatients(Patient patient) {
         StringBuilder resp = new StringBuilder();
-        resp.append(patient.toString());
+        resp.append(displayPatient(patient));
         resp.append("</br>");
         resp.append(Constants.editPatientBtn(patient.getPatientId()));
        // resp.append("</br>");
@@ -211,7 +235,7 @@ public class DoctorPatientController {
 
     private String patientDisplayUnattendedPatients(Patient patient) {
         StringBuilder resp = new StringBuilder();
-        resp.append(patient.toString());
+        resp.append(displayPatient(patient));
         resp.append("</br>");
         resp.append(Constants.editPatientBtn(patient.getPatientId()));
         // resp.append("</br>");
@@ -227,7 +251,37 @@ public class DoctorPatientController {
         return resp.toString();
     }
 
+    private String showPatientRecord(Patient patient) {
+        StringBuilder resp = new StringBuilder();
+        resp.append(displayPatient(patient));
+        resp.append("</br>");
+        // resp.append("</br>");
+        resp.append(Constants.signOutPatientBtn(patient.getPatientId()));
+        return resp.toString();
+    }
 
+    private String displayPatient(Patient patient) {
+        StringBuilder resp = new StringBuilder();
+        resp.append("<p>");
+        resp.append("<b>");
+        resp.append("Name: ");
+        resp.append("</b>");
+        resp.append(patient.getName());
+        resp.append("</p>");
+        resp.append("<p>");
+        resp.append("<b>");
+        resp.append("Age: ");
+        resp.append("</b>");
+        resp.append(patient.getAge());
+        resp.append("</p>");
+        resp.append("<p>");
+        resp.append("<b>");
+        resp.append("Diagnosis: ");
+        resp.append("</b>");
+        resp.append(patient.getDiagnosis());
+        resp.append("</p>");
+        return resp.toString();
+    }
 
 
 }
