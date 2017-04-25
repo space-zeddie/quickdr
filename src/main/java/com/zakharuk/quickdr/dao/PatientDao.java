@@ -14,6 +14,7 @@ public interface PatientDao {
 
     void remove(Patient patient);
 
+    Patient findByName(String name);
 
 
 }

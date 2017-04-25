@@ -41,4 +41,9 @@ public class PatientServiceImpl implements PatientService {
     public void remove(Patient patient) {
         patientDao.remove(patient);
     }
+
+    @Override
+    public Patient findByName(String name) {
+        return patientDao.findByName(name);
+    }
 }

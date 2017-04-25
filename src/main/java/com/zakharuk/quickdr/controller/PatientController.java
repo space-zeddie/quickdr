@@ -62,19 +62,19 @@ public class PatientController {
      * GET /get-by-name  --> Return the id for the patient having the passed
      * name.
      */
-    /*@RequestMapping("/get-by-name")
+    @RequestMapping("/get-patient-by-name")
     @ResponseBody
     public String getByName(String name) {
-        String subjectId = "";
+        String patientId = "";
         try {
-            Subject subject = subjectDao.findByName(name);
-            subjectId = String.valueOf(subject.getId());
+            Patient patient = patientService.findByName(name);
+            patientId = String.valueOf(patient.getPatientId());
         }
         catch (Exception ex) {
-            return HEADER + "Subject not found" + FOOTER;
+            return Constants.HEADER + "Patient not found" + Constants.FOOTER;
         }
-        return HEADER + "The subject id is: " + subjectId + FOOTER;
-    }*/
+        return Constants.HEADER + "The patient id is: " + patientId + Constants.FOOTER;
+    }
 
     /**
      * GET /update  --> Update the name and the age for the subject in the

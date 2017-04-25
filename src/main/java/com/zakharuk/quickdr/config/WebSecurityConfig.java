@@ -41,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/register-patient", "/assign-patient", "/delete-doctor",
                         "/update-doctor", "/create-doctor", "/register-patient", "/delete",
-                        "/edit-patient", "/edit-profile").hasAnyAuthority(ADMIN_ROLE, DOCTOR_ROLE)
+                        "/edit-patient", "/edit-profile", "/edit-doctor").hasAnyAuthority(ADMIN_ROLE, DOCTOR_ROLE)
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

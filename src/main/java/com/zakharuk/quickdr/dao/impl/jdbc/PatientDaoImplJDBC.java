@@ -22,6 +22,7 @@ public class PatientDaoImplJDBC implements PatientDao {
     private JdbcTemplate jdbcTemplate;
 
     private static final String GET = "SELECT * FROM ChildPatients WHERE patientId=?";
+    private static final String GET_BY_NAME = "SELECT * FROM ChildPatients WHERE name=?";
     private static final String INSERT = "INSERT INTO ChildPatients (name, age, diagnosis) VALUES (?,?,?)";
     private static final String UPDATE = "UPDATE ChildPatients SET name=?, age=?, diagnosis=?";
     private static final String DELETE = "DELETE FROM ChildPatients WHERE patientId=?";
@@ -40,6 +41,12 @@ public class PatientDaoImplJDBC implements PatientDao {
     }
 
     @Override
+    public Patient findByName(String name) {
+        System.out.println("Getting patient: " + name);
+        return jdbcTemplate.queryForObject(GET_BY_NAME, mapper, name);
+    }
+
+    @Override
     public Patient getPatientById(int id) {
         System.out.println("Getting patient: " + id);
         return jdbcTemplate.queryForObject(GET, mapper, id);
@@ -47,7 +54,9 @@ public class PatientDaoImplJDBC implements PatientDao {
 
     @Override
     public Patient getPatientByName(String name) {
-        return null;
+
+        System.out.println("Getting patient: " + name);
+        return jdbcTemplate.queryForObject(GET_BY_NAME, mapper, name);
     }
 
     @Override

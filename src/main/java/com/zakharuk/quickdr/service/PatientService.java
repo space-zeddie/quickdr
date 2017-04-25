@@ -14,4 +14,6 @@ public interface PatientService {
 
     void remove(Patient patient);
 
+    Patient findByName(String name);
+
 }
