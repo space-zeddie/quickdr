@@ -73,8 +73,29 @@ public class UserController {
                 "            Name <input type=\"text\" id=\"name\" name=\"name\"  /><br />\n" +
                 "            Password <input type=\"text\" id=\"password\" name=\"password\" /><br />\n" +
                 "            Role <input type=\"text\" id=\"role\" name=\"role\"/><br />\n" +
-                "            <button id=\"adds\">Process</button>\n" +
                 "            <a id=\"link\" href=\"/\" class = \"btn btn-info regist\">Register</a>\n" +
+                "            <!--<input type=\"submit\" />-->\n" +
+                "        </div>\n" +
+                "    </div>");
+        res.append(Constants.FOOTER);
+        return res.toString();
+    }
+
+    @RequestMapping("/edit-profile")
+    @ResponseBody
+    public String editUser(String login) {
+        StringBuilder res = new StringBuilder();
+        res.append(Constants.HEADER);
+        User user = userDao.get(login);
+        res.append("<div class=\"jumbotron\">\n" +
+                "        <div>\n" +
+                "            Name <input type=\"text\" id=\"name\" name=\"name\" value=\""
+                + user.getName() + "\" /><br />\n" +
+                "            Password <input type=\"text\" id=\"password\" name=\"password\" value=\""
+                + "" + "\" /><br />\n" +
+                "            Role <input type=\"text\" id=\"role\" name=\"role\" value=\""
+                + user.getRole() + "\" /><br />\n" +
+                "            <a id=\"link\" href=\"/\" class = \"btn btn-info update-user\">Update</a>\n" +
                 "            <!--<input type=\"submit\" />-->\n" +
                 "        </div>\n" +
                 "    </div>");

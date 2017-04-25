@@ -11,6 +11,13 @@ $(document).ready(function(){
         var id = $('.lnk_edit').attr('id');
         window.location.replace("/update?id=" + id + "&name=" + name + "&age=" + age + "&diagnosis=" + diagnosis);
     });
+    $('.regist').click(function (e) {
+       e.preventDefault();
+       var name = $("#name").val();
+       var password = $("#password").val();
+       var role = $("role").val();
+       window.location.replace("/createuser?name=" + name + "&password=" + password + "&role=" + role);
+    });
     $("#adds").click(function(e){
         e.preventDefault();
         var name = $("#name").val();
