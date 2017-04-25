@@ -45,8 +45,10 @@ public class Constants {
         return "<a href=\"/sign-out-patient?patientId=" + id  + "\" class=\"btn btn-info edit-patient\" id=\""+ id +"\">Sign Out Patient</a>";
     }
 
-
-
+    public static final String assignPatientBtn(int pid, int did) {
+        return "<a href=\"/assign-patient?patientId=" + pid  + "&doctorId=" + did +
+                "\" class=\"btn btn-info assign-patient\" id=\""+ pid + "" + did +"\">Assign To Me</a>";
+    }
 
 
     public static final String addStudentBtn(long id, long studentId) {

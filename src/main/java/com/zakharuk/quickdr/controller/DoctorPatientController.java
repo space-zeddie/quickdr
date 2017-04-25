@@ -76,7 +76,7 @@ public class DoctorPatientController {
             List<Patient> patientList = doctorPatientService.getDoctorsPatients(doctorId);
             for (Patient p : patientList) {
                 resp.append("<div class='jumbotron'>");
-                resp.append(patientDisplay(p));
+                resp.append(patientDisplayDoctorsPatients(p));
                 resp.append("</div>");
             }
         }
@@ -95,7 +95,7 @@ public class DoctorPatientController {
             List<Patient> patientList = doctorPatientService.getUnattendedPatients();
             for (Patient p : patientList) {
                 resp.append("<p>");
-                resp.append(p);
+                resp.append(patientDisplayUnattendedPatients(p));
                 resp.append("</p>");
             }
         }
@@ -175,7 +175,7 @@ public class DoctorPatientController {
             List<Patient> patientList = doctorPatientService.getPatientsWithOneDoctor(doctorId);
             for (Patient p : patientList) {
                 resp.append("<div class='jumbotron'>");
-                resp.append(patientDisplay(p));
+                resp.append(patientDisplayDoctorsPatients(p));
                 resp.append("</div>");
             }
         }
@@ -185,7 +185,7 @@ public class DoctorPatientController {
         return resp.toString() + Constants.FOOTER;
     }
 
-    private String patientDisplay(Patient patient) {
+    private String patientDisplayDoctorsPatients(Patient patient) {
         StringBuilder resp = new StringBuilder();
         resp.append(patient.toString());
         resp.append("</br>");
@@ -194,6 +194,17 @@ public class DoctorPatientController {
         resp.append(Constants.signOutPatientBtn(patient.getPatientId()));
         return resp.toString();
     }
+
+    private String patientDisplayUnattendedPatients(Patient patient) {
+        StringBuilder resp = new StringBuilder();
+        resp.append(patient.toString());
+        resp.append("</br>");
+        resp.append(Constants.editPatientBtn(patient.getPatientId()));
+        // resp.append("</br>");
+        resp.append(Constants.assignPatientBtn(patient.getPatientId(), 1));
+        return resp.toString();
+    }
+
 
 
 
