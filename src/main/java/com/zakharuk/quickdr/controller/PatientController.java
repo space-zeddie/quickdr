@@ -214,6 +214,23 @@ public class PatientController {
         return res.toString();
     }
 
+    @RequestMapping("/add-patient")
+    @ResponseBody
+    public String registerDoctor() {
+        StringBuilder res = new StringBuilder();
+        res.append(Constants.HEADER);
+        res.append("<div class=\"jumbotron\">\n" +
+                "        <div>\n" +
+                "            Name <input type=\"text\" id=\"name\" name=\"name\"  /><br />\n" +
+                "            Age <input type=\"text\" id=\"age\" name=\"age\" /><br />\n" +
+                "            Diagnosis <input type=\"text\" id=\"diagnosis\" name=\"diagnosis\"/><br />\n" +
+                "            <a id=\"link\" href=\"/\" class = \"btn btn-info regist_patient\">Register</a>\n" +
+                "        </div>\n" +
+                "    </div>");
+        res.append(Constants.FOOTER);
+        return res.toString();
+    }
+
    /* @RequestMapping("/list-students")
     @ResponseBody
     public String listStudents(long id) {

@@ -29,11 +29,18 @@ $(document).ready(function(){
         var office = $("#office").val();
         var whour1 = $("#whour1").val();
         var whour2 = $("#whour2").val();
-        var id = $('.lnk_edit_doc').attr('id');
         window.location.replace("/create-doctor" +
             "?name=" + name + "&office=" + office +
             "&whour1=" + whour1 +
             "&whour2=" + whour2);
+    });
+    $('.regist_patient').click(function (e) {
+        e.preventDefault();
+        var name = $("#name").val();
+        var age = $("#age").val();
+        var diagnosis = $("#diagnosis").val();
+        window.location.replace("/register-patient" +
+            "?name=" + name + "&age=" + age + "&diagnosis=" + diagnosis);
     });
     $('.regist').click(function (e) {
        e.preventDefault();
