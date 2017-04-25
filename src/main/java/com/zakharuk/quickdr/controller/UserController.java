@@ -71,7 +71,7 @@ public class UserController {
         res.append("<div class=\"jumbotron\">\n" +
                 "        <div>\n" +
                 "            Name <input type=\"text\" id=\"name\" name=\"name\"  /><br />\n" +
-                "            Password <input type=\"text\" id=\"password\" name=\"password\" /><br />\n" +
+                "            Password <input type=\"password\" id=\"password\" name=\"password\" /><br />\n" +
                 "            Role <input type=\"text\" id=\"role\" name=\"role\"/><br />\n" +
                 "            <a id=\"link\" href=\"/\" class = \"btn btn-info regist\">Register</a>\n" +
                 "            <!--<input type=\"submit\" />-->\n" +
@@ -91,7 +91,7 @@ public class UserController {
                 "        <div>\n" +
                 "            Name <input type=\"text\" id=\"name\" name=\"name\" value=\""
                 + user.getName() + "\" /><br />\n" +
-                "            Password <input type=\"text\" id=\"password\" name=\"password\" value=\""
+                "            Password <input type=\"password\" id=\"password\" name=\"password\" value=\""
                 + "" + "\" /><br />\n" +
                 "            Role <input type=\"text\" id=\"role\" name=\"role\" value=\""
                 + user.getRole() + "\" /><br />\n" +
