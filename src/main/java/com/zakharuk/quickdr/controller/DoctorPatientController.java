@@ -88,6 +88,18 @@ public class DoctorPatientController {
         return resp.toString() + Constants.FOOTER;
     }
 
+    @RequestMapping("/my-patients")
+    @ResponseBody
+    public String myPatients() {
+        Doctor doctor = null;
+        try {
+            doctor = doctorService.findByName(Constants.getCurrentUser());
+            return listPatients(doctor.getId());
+        }catch (Exception ex) {
+            return Constants.HEADER + "Error retrieving the records: " + ex.toString() + Constants.FOOTER;
+        }
+    }
+
     @RequestMapping("/unattended-patients")
     @ResponseBody
     public String listUnattendedPatients() {
@@ -197,13 +209,15 @@ public class DoctorPatientController {
         return resp.toString();
     }
 
-    private static String patientDisplayUnattendedPatients(Patient patient) {
+    private String patientDisplayUnattendedPatients(Patient patient) {
         StringBuilder resp = new StringBuilder();
         resp.append(patient.toString());
         resp.append("</br>");
         resp.append(Constants.editPatientBtn(patient.getPatientId()));
         // resp.append("</br>");
-        resp.append(Constants.assignPatientBtn(patient.getPatientId(), 1));
+
+        Doctor doctor = doctorService.findByName(Constants.getCurrentUser());
+        resp.append(Constants.assignPatientBtn(patient.getPatientId(), doctor.getId()));
         return resp.toString();
     }
 

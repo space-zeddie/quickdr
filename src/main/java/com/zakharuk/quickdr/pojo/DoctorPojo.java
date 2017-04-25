@@ -7,16 +7,25 @@ import java.util.Date;
  */
 public class DoctorPojo {
 
+    private int id;
     private String name;
     private int office;
     private Date workingHour1;
     private Date workingHour2;
 
-    public DoctorPojo(String name, int office, Date workingHour1, Date workingHour2) {
+    public DoctorPojo(int id, String name, int office, Date workingHour1, Date workingHour2) {
         this.name = name;
         this.office = office;
         this.workingHour1 = workingHour1;
         this.workingHour2 = workingHour2;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

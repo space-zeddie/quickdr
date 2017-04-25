@@ -71,6 +71,10 @@ public class Constants {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         return ((auth.getAuthorities().toArray()[0]).toString());
     }
+    public static final String getCurrentUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return auth.getName();
+    }
 
     public static final String HEADER = "<!DOCTYPE html>\n" +
             "<html xmlns:th=\"http://www.thymeleaf.org\">\n" +

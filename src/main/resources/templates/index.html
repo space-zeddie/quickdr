@@ -37,7 +37,8 @@
             This content is only shown to administrators.
         </div>
         <div sec:authorize="hasAuthority('doctor')">
-            This content is only shown to doctors.
+            <a href="/unattended-patients" class="btn btn-warning">Unattended Patients</a>
+            <a href="/my-patients" class="btn btn-warning">My Patients</a>
         </div>
         <div sec:authorize="hasRole('patient')">
             This content is only shown to patients.

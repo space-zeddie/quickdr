@@ -64,7 +64,8 @@ public class DoctorDaoImplJDBC implements DoctorDao {
 
     private RowMapper<DoctorPojo> doctorPojoRowMapper = new RowMapper<DoctorPojo>() {
         public DoctorPojo mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return new DoctorPojo(rs.getString("name"),
+            return new DoctorPojo(rs.getInt("id"),
+                    rs.getString("name"),
                     rs.getInt("office"),
                     rs.getDate("whour1"),
                     rs.getDate("whour2"));
@@ -74,6 +75,7 @@ public class DoctorDaoImplJDBC implements DoctorDao {
     private RowMapper<Doctor> mapper = new RowMapper<Doctor>() {
         public Doctor mapRow(ResultSet rs, int rowNum) throws SQLException {
             Doctor doctor = new Therapist();
+            doctor.setId(rs.getInt("id"));
             doctor.setName(rs.getString("name"));
             doctor.setOffice(rs.getInt("office"));
             doctor.setWorkingHour1(rs.getDate("whour1"));
