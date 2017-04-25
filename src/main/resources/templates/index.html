@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head lang="en">
 
     <title>Homepage</title>
@@ -20,8 +21,7 @@
 <body>
 <div class="container">
     <div class="jumbotron">
-        Logged in user: <b th:inline="text"> [[${#httpServletRequest.remoteUser}]] </b>
-        </br>
+        <p>Welcome back, <b th:inline="text"> [[${#httpServletRequest.remoteUser}]] </b> !</p>
         <!--<a href="/all" class="btn btn-primary">List all subjects</a>
         <a href="/all-recommended" class="btn btn-primary">List all recommended subjects</a>
 
@@ -32,6 +32,16 @@
         <a href="/register" class="btn btn-success">Register</a>
         <a href="/login" class="btn btn-success">Login</a>
         <a href="/logout" class="btn btn-success">Logout</a>
+
+        <div sec:authorize="hasRole('admin')">
+            This content is only shown to administrators.
+        </div>
+        <div sec:authorize="hasAuthority('doctor')">
+            This content is only shown to doctors.
+        </div>
+        <div sec:authorize="hasRole('patient')">
+            This content is only shown to patients.
+        </div>
     </div>
 </div>
 </body>

@@ -46,7 +46,7 @@ $(document).ready(function(){
        e.preventDefault();
        var name = $("#name").val();
        var password = $("#password").val();
-       var role = $("role").val();
+       var role = $("#role").val();
        window.location.replace("/createuser?name=" + name + "&password=" + password + "&role=" + role);
     });
     $("#adds").click(function(e){

@@ -1,5 +1,8 @@
 package com.zakharuk.quickdr.controller;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 /**
  * Created by matvii on 13.04.17.
  */
@@ -62,6 +65,11 @@ public class Constants {
     public static final String removeStudentBtn(long id, long studentId) {
 
         return "<a href=\"/remove-user?subjectid=" + id + "&userid=" + studentId + "\" class=\"btn btn-info\">Sign Off </a>";
+    }
+
+    public static final String getCurrentAuthority() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return ((auth.getAuthorities().toArray()[0]).toString());
     }
 
     public static final String HEADER = "<!DOCTYPE html>\n" +
