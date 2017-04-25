@@ -23,6 +23,18 @@ $(document).ready(function(){
             "&whour1=" + whour1 +
             "&whour2=" + whour2);
     });
+    $('.regist_doc').click(function (e) {
+        e.preventDefault();
+        var name = $("#name").val();
+        var office = $("#office").val();
+        var whour1 = $("#whour1").val();
+        var whour2 = $("#whour2").val();
+        var id = $('.lnk_edit_doc').attr('id');
+        window.location.replace("/create-doctor" +
+            "?name=" + name + "&office=" + office +
+            "&whour1=" + whour1 +
+            "&whour2=" + whour2);
+    });
     $('.regist').click(function (e) {
        e.preventDefault();
        var name = $("#name").val();

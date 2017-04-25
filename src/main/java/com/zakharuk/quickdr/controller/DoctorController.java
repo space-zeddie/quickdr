@@ -113,4 +113,24 @@ public class DoctorController {
         return res.toString();
     }
 
+    @RequestMapping("/register-doctor")
+    @ResponseBody
+    public String registerDoctor() {
+        StringBuilder res = new StringBuilder();
+        res.append(Constants.HEADER);
+        res.append("<div class=\"jumbotron\">\n" +
+                "        <div>\n" +
+                "            Name <input type=\"text\" id=\"name\" name=\"name\"  /><br />\n" +
+                "            Office <input type=\"text\" id=\"office\" name=\"office\" /><br />\n" +
+                "            Starts working at <input type=\"text\" id=\"whour1\" name=\"whour1\"/><br />\n" +
+                "            Finishes work at <input type=\"text\" id=\"whour2\" name=\"whour2\"/><br />\n" +
+                "            <a id=\"link\" href=\"/\" class = \"btn btn-info regist_doc\">Register</a>\n" +
+                "        </div>\n" +
+                "    </div>");
+        res.append(Constants.FOOTER);
+        return res.toString();
+    }
+
+
+
 }
