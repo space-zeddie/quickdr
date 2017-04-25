@@ -34,7 +34,8 @@
         <a sec:authorize="isAuthenticated()" href="/logout" class="btn btn-success">Logout</a>
 
         <div sec:authorize="hasRole('admin')">
-            This content is only shown to administrators.
+            <a href="/register-doctor" class="btn btn-warning">Add Doctor</a>
+            <a href="/add-patient" class="btn btn-warning">Add Patient</a>
         </div>
         <div sec:authorize="hasAuthority('doctor')">
             <a href="/unattended-patients" class="btn btn-warning">Unattended Patients</a>
