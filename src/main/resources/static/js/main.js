@@ -11,6 +11,18 @@ $(document).ready(function(){
         var id = $('.lnk_edit').attr('id');
         window.location.replace("/update?id=" + id + "&name=" + name + "&age=" + age + "&diagnosis=" + diagnosis);
     });
+    $('.lnk_edit_doc').click(function (e) {
+        e.preventDefault();
+        var name = $("#name").val();
+        var office = $("#office").val();
+        var whour1 = $("#whour1").val();
+        var whour2 = $("#whour2").val();
+        var id = $('.lnk_edit_doc').attr('id');
+        window.location.replace("/update-doctor?id=" + id +
+            "&name=" + name + "&office=" + office +
+            "&whour1=" + whour1 +
+            "&whour2=" + whour2);
+    });
     $('.regist').click(function (e) {
        e.preventDefault();
        var name = $("#name").val();

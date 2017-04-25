@@ -26,7 +26,7 @@ public class DoctorController {
     @Autowired
     private DoctorPatientService doctorPatientService;
 
-    private SimpleDateFormat formatter = new SimpleDateFormat("HH-mm");
+    private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
     /**
      * GET /create  --> Create a new procedure and save it in the database.
@@ -81,6 +81,7 @@ public class DoctorController {
             doctor = doctorService.getDoctorById(id);
             doctor.setName(name);
             doctor.setOffice(office);
+            System.err.println(formatter.parse(whour1));
             doctor.setWorkingHour1(formatter.parse(whour1));
             doctor.setWorkingHour2(formatter.parse(whour2));
             doctorService.update(doctor);
@@ -107,7 +108,7 @@ public class DoctorController {
                 + doctor.getWorkingHour1() +"\" /><br />");
         res.append("Finishes work at <input type=\"text\" id=\"whour2\" name=\"whour2\" value=\""
                 + doctor.getWorkingHour2() +"\" /><br />");
-        res.append("<a id=\"" + doctor.getId() + "\" href=\"/\" class = \"btn btn-info lnk_edit_doc\">Update</a>");
+        res.append("<a id=\"" + id + "\" href=\"/\" class = \"btn btn-info lnk_edit_doc\">Update</a>");
         res.append(Constants.FOOTER);
         return res.toString();
     }
