@@ -2,7 +2,6 @@
  * Created by citizenzer0 on 12/4/16.
  */
 $(document).ready(function(){
-    alert('ready!');
     //$('.regist').visibility(false);
     $('.lnk_edit').click(function (e) {
         e.preventDefault();

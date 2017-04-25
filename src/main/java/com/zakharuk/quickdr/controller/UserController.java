@@ -62,4 +62,24 @@ public class UserController {
         return Constants.HEADER + "User succesfully updated!" + Constants.FOOTER;
     }
 
+    @RequestMapping("/register")
+    @ResponseBody
+    public String registerUser() {
+        StringBuilder res = new StringBuilder();
+        res.append(Constants.HEADER);
+        //Patient patient = patientService.getPatientById(id);
+        res.append("<div class=\"jumbotron\">\n" +
+                "        <div>\n" +
+                "            Name <input type=\"text\" id=\"name\" name=\"name\"  /><br />\n" +
+                "            Password <input type=\"text\" id=\"password\" name=\"password\" /><br />\n" +
+                "            Role <input type=\"text\" id=\"role\" name=\"role\"/><br />\n" +
+                "            <button id=\"adds\">Process</button>\n" +
+                "            <a id=\"link\" href=\"/\" class = \"btn btn-info regist\">Register</a>\n" +
+                "            <!--<input type=\"submit\" />-->\n" +
+                "        </div>\n" +
+                "    </div>");
+        res.append(Constants.FOOTER);
+        return res.toString();
+    }
+
 }
