@@ -91,4 +91,25 @@ public class DoctorController {
         return Constants.HEADER + "Doctor succesfully updated!" + Constants.FOOTER;
     }
 
+    @RequestMapping("/edit-doctor")
+    @ResponseBody
+    public String editDoctor(int id) {
+        StringBuilder res = new StringBuilder();
+        res.append(Constants.HEADER);
+        Doctor doctor = doctorService.getDoctorById(id);
+        res.append("<div class=\"jumbotron\">");
+        res.append("<div>");
+        res.append("Name <input type=\"text\" id=\"name\" name=\"name\" value=\""
+                + doctor.getName() +"\" /><br />");
+        res.append("Office <input type=\"text\" id=\"office\" name=\"office\" value=\""
+                + doctor.getOffice() +"\" /><br />");
+        res.append("Starts working at <input type=\"text\" id=\"whour1\" name=\"whour1\" value=\""
+                + doctor.getWorkingHour1() +"\" /><br />");
+        res.append("Finishes work at <input type=\"text\" id=\"whour2\" name=\"whour2\" value=\""
+                + doctor.getWorkingHour2() +"\" /><br />");
+        res.append("<a id=\"" + doctor.getId() + "\" href=\"/\" class = \"btn btn-info lnk_edit_doc\">Update</a>");
+        res.append(Constants.FOOTER);
+        return res.toString();
+    }
+
 }
