@@ -5,14 +5,24 @@ package com.zakharuk.quickdr.pojo;
  */
 public class PatientPojo {
 
+    private int patientId;
     private String name;
     private String diagnosis;
     private int age;
 
-    public PatientPojo(String name, int age, String diagnosis) {
+    public PatientPojo(int patientId, String name, int age, String diagnosis) {
+        this.patientId = patientId;
         this.name = name;
         this.diagnosis = diagnosis;
         this.age = age;
+    }
+
+    public int getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
     }
 
     public String getName() {

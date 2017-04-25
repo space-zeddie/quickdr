@@ -160,7 +160,7 @@
 	</build>
 	<repositories>
 	<repository>
-		<id>spring-snapshots</id>
+		<patientId>spring-snapshots</patientId>
 		<name>Spring Snapshots</name>
 		<url>https://repo.spring.io/libs-snapshot</url>
 		<snapshots>

@@ -27,7 +27,7 @@ public class DoctorDaoImplJDBC implements DoctorDao {
     private static final String GET = "SELECT * FROM doctors WHERE id=?";
     private static final String GET_BY_NAME = "SELECT * FROM doctors WHERE name=?";
     private static final String INSERT = "INSERT INTO doctors (name, office, whour1, whour2) VALUES (?,?,?,?)";
-    private static final String UPDATE = "UPDATE doctors SET name=?, office=?, whour1=?, whour2=?";
+    private static final String UPDATE = "UPDATE doctors SET name=?, office=?, whour1=?, whour2=? WHERE id=?";
     private static final String DELETE = "DELETE FROM doctors WHERE id=?";
 
     @Override
@@ -47,7 +47,7 @@ public class DoctorDaoImplJDBC implements DoctorDao {
     public void update(Doctor doctor) {
         System.out.println("Updating procedure: " + doctor);
         jdbcTemplate.update(UPDATE, doctor.getName(), doctor.getOffice(),
-                doctor.getWorkingHour1(), doctor.getWorkingHour2());
+                doctor.getWorkingHour1(), doctor.getWorkingHour2(), doctor.getId());
     }
 
     @Override

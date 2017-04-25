@@ -53,6 +53,13 @@ public class Constants {
                 "\" class=\"btn btn-info assign-patient\" id=\""+ pid + "" + did +"\">Assign To Me</a>";
     }
 
+    public static final String continueRegistrationDocBtn(int id) {
+        return "<a href=\"/edit-doctor?id=" + id  + "\" class=\"btn btn-info edit-doc\" id=\""+ id +"\">Continue Registration</a>";
+    }
+    public static final String continueRegistrationPatBtn(int id) {
+        return "<a href=\"/edit-patient?id=" + id  + "\" class=\"btn btn-info edit-pat\" id=\""+ id +"\">Continue Registration</a>";
+    }
+
 
     public static final String addStudentBtn(long id, long studentId) {
 

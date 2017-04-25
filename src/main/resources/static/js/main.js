@@ -23,6 +23,16 @@ $(document).ready(function(){
             "&whour1=" + whour1 +
             "&whour2=" + whour2);
     });
+    $('.edit-doc').click(function (e) {
+        e.preventDefault();
+        var id = $('.edit-doc').attr('id');
+        window.location.replace("/edit-doctor?id=" + id)
+    });
+    $('.edit-pat').click(function (e) {
+        e.preventDefault();
+        var id = $('.edit-pat').attr('id');
+        window.location.replace("/edit-patient?id=" + id)
+    });
     $('.regist_doc').click(function (e) {
         e.preventDefault();
         var name = $("#name").val();
@@ -47,7 +57,9 @@ $(document).ready(function(){
        var name = $("#name").val();
        var password = $("#password").val();
        var role = $("#role").val();
-       window.location.replace("/createuser?name=" + name + "&password=" + password + "&role=" + role);
+       if (role === "admin" || role === "doctor" || role === "patient")
+           window.location.replace("/createuser?name=" + name + "&password=" + password + "&role=" + role);
+       alert("Input admin, doctor, or patient as role");
     });
     $("#adds").click(function(e){
         e.preventDefault();

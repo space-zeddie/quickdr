@@ -24,7 +24,7 @@ public class PatientDaoImplJDBC implements PatientDao {
     private static final String GET = "SELECT * FROM ChildPatients WHERE patientId=?";
     private static final String GET_BY_NAME = "SELECT * FROM ChildPatients WHERE name=?";
     private static final String INSERT = "INSERT INTO ChildPatients (name, age, diagnosis) VALUES (?,?,?)";
-    private static final String UPDATE = "UPDATE ChildPatients SET name=?, age=?, diagnosis=?";
+    private static final String UPDATE = "UPDATE ChildPatients SET name=?, age=?, diagnosis=? WHERE id=?";
     private static final String DELETE = "DELETE FROM ChildPatients WHERE patientId=?";
     //private static final String TOTALL_PATIENTS = ""
 
@@ -62,12 +62,13 @@ public class PatientDaoImplJDBC implements PatientDao {
     @Override
     public void savePatient(Patient patient) {
         System.out.println("Updating patient: " + patient.getPatientData());
-        jdbcTemplate.update(UPDATE, patient.getName(), patient.getAge(), patient.getDiagnosis());
+        jdbcTemplate.update(UPDATE, patient.getName(), patient.getAge(), patient.getDiagnosis(), patient.getPatientId());
     }
 
     private RowMapper<PatientPojo> patientPojoRowMapper = new RowMapper<PatientPojo>() {
         public PatientPojo mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return new PatientPojo(rs.getString("name"),
+            return new PatientPojo(rs.getInt("patientId"),
+                    rs.getString("name"),
                     rs.getInt("age"),
                     rs.getString("diagnosis"));
         }

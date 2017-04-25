@@ -101,100 +101,6 @@ public class PatientController {
      * GET /update  --> Update the name and the credits for the subject in the
      * database having the passed id.
      */
-   /* @RequestMapping("/set-prof")
-    @ResponseBody
-    public String setProf(long id, String prof) {
-        try {
-            Subject subject = subjectDao.findOne(id);
-            subject.setProf(prof);
-            subjectDao.save(subject);
-        }
-        catch (Exception ex) {
-            return HEADER + "Error updating the subject: " + ex.toString() + FOOTER;
-        }
-        return HEADER + "Subject succesfully updated!" + FOOTER;
-    }*/
-
-    /*@RequestMapping("/recommend")
-    @ResponseBody
-    public String recommend(long id, boolean rec) {
-        try {
-            Subject subject = subjectDao.findOne(id);
-            subject.setRecommended(rec);
-            subjectDao.save(subject);
-        }
-        catch (Exception ex) {
-            return HEADER + "Error updating the subject: " + ex.toString() + FOOTER;
-        }
-        return HEADER + "Subject succesfully updated!" + FOOTER;
-    }*/
-
-
-
-   /* @RequestMapping("/all-patients")
-    @ResponseBody
-    public String findAll() {
-        StringBuilder res = new StringBuilder();
-        res.append(HEADER);
-        try {
-            Iterable<Subject> all = subjectDao.findAll();
-            res = listSubjects(all, res);
-        }
-        catch (Exception ex) {
-            res.append("Error retrieving the subjects: " + ex.toString());
-        }
-        finally {
-            res.append(FOOTER);
-            return res.toString();
-        }
-    }*/
-
-    /*@RequestMapping("/all-recommended")
-    @ResponseBody
-    public String findAllRecommended() {
-        StringBuilder res = new StringBuilder();
-        res.append(HEADER);
-        try {
-            List<Subject> all = new ArrayList<Subject>();
-            for (Subject s : subjectDao.findAll())
-                if (s.isRecommended()) all.add(s);
-            res = listSubjects(all, res);
-        }
-        catch (Exception ex) {
-            res.append("Error retrieving the subjects: " + ex.toString());
-        }
-        finally {
-            res.append(FOOTER);
-            return res.toString();
-        }
-    }*/
-
-    /*private StringBuilder listSubjects(Iterable<Subject> is, StringBuilder res) {
-        for (Subject s : is) {
-            res.append("<div>");
-            res.append(s.toString());
-            res.append("<br>");
-            res.append(listStudentsBtn(s.getId()));
-            if (SecurityConfiguration.isStudent() && s.isRecommended() && ZakharukApplication.isSecondStage())
-                res.append(signUpBtn(s.getId()));
-            if (SecurityConfiguration.isMethodist() && ZakharukApplication.isFirstStage()) {
-                if (!s.isRecommended())
-                    res.append(recommendBtn(s.getId()));
-                else
-                    res.append(unrecommendBtn(s.getId()));
-            }
-            if (SecurityConfiguration.isMethodist() && ZakharukApplication.isFirstStage() || SecurityConfiguration.isAdmin())
-                res.append(updateProfBtn(s.getId()));
-            if (SecurityConfiguration.isAdmin())
-                res.append(editSubjectBtn(s.getId()));
-            if (SecurityConfiguration.isAdmin())
-                res.append(deleteSubjectBtn(s.getId()));
-            res.append("</div>");
-            res.append("<br>");
-        }
-        return res;
-    }*/
-
     @RequestMapping("/edit-patient")
     @ResponseBody
     public String editPatient(int id) {
@@ -242,8 +148,8 @@ public class PatientController {
                 res.append(u.toString());
                 res.append("<br>");
                 if (SecurityConfiguration.isStudent() &&
-                        (u.getId() == userDao.findByName(SecurityConfiguration.findAuth().getName()).getId()))
-                    res.append(removeStudentBtn(s.getId(), u.getId()));
+                        (u.getPatientId() == userDao.findByName(SecurityConfiguration.findAuth().getName()).getPatientId()))
+                    res.append(removeStudentBtn(s.getPatientId(), u.getPatientId()));
                 res.append("<br>");
             }
         }
@@ -314,7 +220,7 @@ public class PatientController {
         //for (User u : users)
         User u = userDao.findByName(SecurityConfiguration.findAuth().getName());
         res.append("<p>You currently have " + u.getAllCredits() + " credits. Are you sure you want to sign up?</p>");
-        res.append(addStudentBtn(subjectid, u.getId()));
+        res.append(addStudentBtn(subjectid, u.getPatientId()));
         res.append(FOOTER);
         return res.toString();
     }*/
