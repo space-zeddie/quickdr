@@ -41,6 +41,10 @@ public class Constants {
     public static final String editPatientBtn(int id) {
         return "<a href=\"/edit-patient?id=" + id  + "\" class=\"btn btn-info edit-patient\" id=\""+ id +"\">Edit Patient Record</a>";
     }
+    public static final String signOutPatientBtn(int id) {
+        return "<a href=\"/sign-out-patient?patientId=" + id  + "\" class=\"btn btn-info edit-patient\" id=\""+ id +"\">Sign Out Patient</a>";
+    }
+
 
 
 
@@ -62,7 +66,7 @@ public class Constants {
             "<html xmlns:th=\"http://www.thymeleaf.org\">\n" +
             "<head lang=\"en\">\n" +
             "\n" +
-            "    <title>Subjects</title>\n" +
+            "    <title>QuickDR</title>\n" +
             "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>\n" +
             "    <link href=\"css/bootstrap.min.css\"\n" +
             "          th:href=\"@{css/bootstrap.min.css}\"\n" +

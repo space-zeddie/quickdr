@@ -49,6 +49,21 @@ public class DoctorPatientController {
         return Constants.HEADER + "Patient succesfully assigned!" + Constants.FOOTER;
     }
 
+    @RequestMapping("/sign-out-patient")
+    @ResponseBody
+    public String deleteByPatient(int patientId) {
+        Patient patient = null;
+        try {
+            patient = patientService.getPatientById(patientId);
+            if (doctorPatientService.getPatientsDoctors(patientId).size() > 0)
+                doctorPatientService.removeByPatient(patientId);
+        }
+        catch (Exception ex) {
+            return Constants.HEADER + "Error signing out the patient: " + patient.toString() + Constants.FOOTER;
+        }
+        return Constants.HEADER + "Patient succesfully signed out!" + Constants.FOOTER;
+    }
+
     /**
      * GET /doctors-patients  --> List all patients of a doctor
      */
@@ -175,6 +190,8 @@ public class DoctorPatientController {
         resp.append(patient.toString());
         resp.append("</br>");
         resp.append(Constants.editPatientBtn(patient.getPatientId()));
+       // resp.append("</br>");
+        resp.append(Constants.signOutPatientBtn(patient.getPatientId()));
         return resp.toString();
     }
 
