@@ -60,9 +60,9 @@ public class DoctorPatientController {
         try {
             List<Patient> patientList = doctorPatientService.getDoctorsPatients(doctorId);
             for (Patient p : patientList) {
-                resp.append("<p>");
-                resp.append(p);
-                resp.append("</p>");
+                resp.append("<div class='jumbotron'>");
+                resp.append(patientDisplay(p));
+                resp.append("</div>");
             }
         }
         catch (Exception ex) {
@@ -159,15 +159,23 @@ public class DoctorPatientController {
         try {
             List<Patient> patientList = doctorPatientService.getPatientsWithOneDoctor(doctorId);
             for (Patient p : patientList) {
-                resp.append("<p>");
-                resp.append(p);
-                resp.append("</p>");
+                resp.append("<div class='jumbotron'>");
+                resp.append(patientDisplay(p));
+                resp.append("</div>");
             }
         }
         catch (Exception ex) {
             return Constants.HEADER + "Error listing the patients: " + ex.toString() + Constants.FOOTER;
         }
         return resp.toString() + Constants.FOOTER;
+    }
+
+    private String patientDisplay(Patient patient) {
+        StringBuilder resp = new StringBuilder();
+        resp.append(patient.toString());
+        resp.append("</br>");
+        resp.append(Constants.editPatientBtn(patient.getPatientId()));
+        return resp.toString();
     }
 
 

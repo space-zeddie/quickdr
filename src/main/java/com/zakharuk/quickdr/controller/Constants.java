@@ -38,6 +38,10 @@ public class Constants {
         return "<a href=\"/?id=" + id  + "\" class=\"btn btn-info updateProf\" id=\""+ id +"\">Change Professor</a>";
     }
 
+    public static final String editPatientBtn(int id) {
+        return "<a href=\"/edit-patient?id=" + id  + "\" class=\"btn btn-info edit-patient\" id=\""+ id +"\">Edit Patient Record</a>";
+    }
+
 
 
 

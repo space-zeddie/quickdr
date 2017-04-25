@@ -92,6 +92,24 @@ public class DoctorController {
         return Constants.HEADER + "Doctor succesfully updated!" + Constants.FOOTER;
     }
 
+    /**
+     * GET /get-by-name  --> Return the id for the patient having the passed
+     * name.
+     */
+    @RequestMapping("/get-doctor-by-name")
+    @ResponseBody
+    public String getByName(String name) {
+        Doctor doctor = null;
+        try {
+            doctor = doctorService.findByName(name);
+        }
+        catch (Exception ex) {
+            return Constants.HEADER + "Doctor not found" + Constants.FOOTER;
+        }
+        return Constants.HEADER + "The doctor id is: " + doctor + Constants.FOOTER;
+    }
+
+
     @RequestMapping("/edit-doctor")
     @ResponseBody
     public String editDoctor(int id) {

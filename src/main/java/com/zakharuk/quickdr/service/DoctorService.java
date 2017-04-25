@@ -13,4 +13,6 @@ public interface DoctorService {
     void update(Doctor doctor);
 
     void remove(Doctor doctor);
+
+    Doctor findByName(String name);
 }

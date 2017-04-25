@@ -25,6 +25,7 @@ public class DoctorDaoImplJDBC implements DoctorDao {
     private JdbcTemplate jdbcTemplate;
 
     private static final String GET = "SELECT * FROM doctors WHERE id=?";
+    private static final String GET_BY_NAME = "SELECT * FROM doctors WHERE name=?";
     private static final String INSERT = "INSERT INTO doctors (name, office, whour1, whour2) VALUES (?,?,?,?)";
     private static final String UPDATE = "UPDATE doctors SET name=?, office=?, whour1=?, whour2=?";
     private static final String DELETE = "DELETE FROM doctors WHERE id=?";
@@ -53,6 +54,12 @@ public class DoctorDaoImplJDBC implements DoctorDao {
     public void remove(Doctor doctor) {
         System.out.println("Removing: " + doctor);
         jdbcTemplate.update(DELETE, doctor.getId());
+    }
+
+    @Override
+    public Doctor findByName(String name) {
+        System.out.println("Getting doctor: " + name);
+        return jdbcTemplate.queryForObject(GET_BY_NAME, mapper, name);
     }
 
     private RowMapper<DoctorPojo> doctorPojoRowMapper = new RowMapper<DoctorPojo>() {

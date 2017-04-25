@@ -37,4 +37,9 @@ public class DoctorServiceImpl implements DoctorService {
     public void remove(Doctor doctor) {
         doctorDao.remove(doctor);
     }
+
+    @Override
+    public Doctor findByName(String name) {
+        return doctorDao.findByName(name);
+    }
 }
