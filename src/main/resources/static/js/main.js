@@ -3,6 +3,11 @@
  */
 $(document).ready(function(){
     //$('.regist').visibility(false);
+    $(".form_datetime").datetimepicker({
+        format: 'yyyy-mm-dd',
+        autoclose: true,
+        minView: 4
+    });
     $('.lnk_edit').click(function (e) {
         e.preventDefault();
         var name = $("#name").val();

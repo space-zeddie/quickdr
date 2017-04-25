@@ -122,9 +122,9 @@ public class DoctorController {
                 + doctor.getName() +"\" /><br />");
         res.append("Office <input type=\"text\" id=\"office\" name=\"office\" value=\""
                 + doctor.getOffice() +"\" /><br />");
-        res.append("Starts working at <input type=\"text\" id=\"whour1\" name=\"whour1\" value=\""
+        res.append("Starts working at <input type=\"text\" id=\"whour1\" name=\"whour1\" readonly class=\"form_datetime\" value=\""
                 + doctor.getWorkingHour1() +"\" /><br />");
-        res.append("Finishes work at <input type=\"text\" id=\"whour2\" name=\"whour2\" value=\""
+        res.append("Finishes work at <input type=\"text\" id=\"whour2\" name=\"whour2\" readonly class=\"form_datetime\" value=\""
                 + doctor.getWorkingHour2() +"\" /><br />");
         res.append("<a id=\"" + id + "\" href=\"/\" class = \"btn btn-info lnk_edit_doc\">Update</a>");
         res.append(Constants.FOOTER);
@@ -140,8 +140,8 @@ public class DoctorController {
                 "        <div>\n" +
                 "            Name <input type=\"text\" id=\"name\" name=\"name\"  /><br />\n" +
                 "            Office <input type=\"text\" id=\"office\" name=\"office\" /><br />\n" +
-                "            Starts working at <input type=\"text\" id=\"whour1\" name=\"whour1\"/><br />\n" +
-                "            Finishes work at <input type=\"text\" id=\"whour2\" name=\"whour2\"/><br />\n" +
+                "            Starts working at <input type=\"text\" id=\"whour1\" name=\"whour1\" readonly class=\"form_datetime\"/><br />\n" +
+                "            Finishes work at <input type=\"text\" id=\"whour2\" name=\"whour2\" readonly class=\"form_datetime\"/><br />\n" +
                 "            <a id=\"link\" href=\"/\" class = \"btn btn-info regist_doc\">Register</a>\n" +
                 "        </div>\n" +
                 "    </div>");

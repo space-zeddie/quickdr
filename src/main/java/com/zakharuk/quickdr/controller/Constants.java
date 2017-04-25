@@ -96,6 +96,12 @@ public class Constants {
             "            th:src=\"@{js/jq.js}\"></script>\n" +
             "    <script src=\"js/bootstrap.js\"\n" +
             "            th:src=\"@{js/bootstrap.js}\"></script>\n" +
+            "\n" +
+            "    <link href=\"css/bootstrap-datetimepicker.css\"\n" +
+            "          th:href=\"@{/css/bootstrap-datetimepicker.css}\"\n" +
+            "          rel=\"stylesheet\" media=\"screen\" />\n" +
+            "    <script src=\"js/bootstrap-datetimepicker.js\"\n" +
+            "            th:src=\"@{/js/bootstrap-datetimepicker.js}\"></script>"+
             "    <script src=\"js/main.js\"\n" +
             "            th:src=\"@{js/main.js}\"></script>\n" +
             "    <link href=\"../static/css/main.css\"\n" +

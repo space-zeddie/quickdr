@@ -13,6 +13,11 @@
     <link href="css/bootstrap.min.css"
           th:href="@{/css/bootstrap.min.css}"
           rel="stylesheet" media="screen" />
+    <link href="css/bootstrap-datetimepicker.css"
+          th:href="@{/css/bootstrap-datetimepicker.css}"
+          rel="stylesheet" media="screen" />
+    <script src="js/bootstrap-datetimepicker.js"
+            th:src="@{/js/bootstrap-datetimepicker.js}"></script>
     <link href="css/main.css"
           th:href="@{/css/main.css}" rel="stylesheet" media="screen"/>
     <script src="js/main.js"
@@ -31,8 +36,11 @@
 
         <a sec:authorize="isAnonymous()" href="/register" class="btn btn-success">Register</a>
         <a sec:authorize="isAnonymous()" href="/login" class="btn btn-success">Login</a>
-        <a sec:authorize="isAuthenticated()" href="/logout" class="btn btn-success">Logout</a>
-
+        <!--<a sec:authorize="isAuthenticated()" href="/logout" class="btn btn-success">Logout</a>
+-->
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" class="btn btn-success" value="Sign Out"/>
+        </form>
         <div sec:authorize="hasRole('admin')">
             <a href="/register-doctor" class="btn btn-warning">Add Doctor</a>
             <a href="/add-patient" class="btn btn-warning">Add Patient</a>
