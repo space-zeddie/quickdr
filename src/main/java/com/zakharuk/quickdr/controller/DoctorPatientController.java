@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.print.Doc;
 import java.util.List;
 
 /**
@@ -151,6 +152,7 @@ public class DoctorPatientController {
             patient = patientService.findByName(Constants.getCurrentUser());
             resp.append("<div class='jumbotron'>");
             resp.append(showPatientRecord(patient));
+            resp.append("<div><h3>MY DOCTORS</h3></div>");
             List<Doctor> doctorList = doctorPatientService.getPatientsDoctors(patient.getPatientId());
             for (Doctor p : doctorList) {
                 resp.append("<p>");
@@ -174,7 +176,7 @@ public class DoctorPatientController {
             List<Doctor> doctorList = doctorPatientService.getAvailableDoctors();
             for (Doctor p : doctorList) {
                 resp.append("<p>");
-                resp.append(p);
+                resp.append(doctorDisplay(p));
                 resp.append("</p>");
             }
         }
@@ -193,7 +195,7 @@ public class DoctorPatientController {
             List<Doctor> doctorList = doctorPatientService.getBookedDoctors();
             for (Doctor p : doctorList) {
                 resp.append("<p>");
-                resp.append(p);
+                resp.append(doctorDisplay(p));
                 resp.append("</p>");
             }
         }
@@ -247,7 +249,7 @@ public class DoctorPatientController {
 
     private String doctorDisplay(Doctor doctor) {
         StringBuilder resp = new StringBuilder();
-        resp.append(doctor.toString());
+        resp.append(displayDoctor(doctor));
         return resp.toString();
     }
 
@@ -279,6 +281,29 @@ public class DoctorPatientController {
         resp.append("Diagnosis: ");
         resp.append("</b>");
         resp.append(patient.getDiagnosis());
+        resp.append("</p>");
+        return resp.toString();
+    }
+
+    private String displayDoctor(Doctor doctor) {
+        StringBuilder resp = new StringBuilder();
+        resp.append("<p>");
+        resp.append("<b>");
+        resp.append("Name: ");
+        resp.append("</b>");
+        resp.append(doctor.getName());
+        resp.append("</p>");
+        resp.append("<p>");
+        resp.append("<b>");
+        resp.append("Office: ");
+        resp.append("</b>");
+        resp.append(doctor.getOffice());
+        resp.append("</p>");
+        resp.append("<p>");
+        resp.append("<b>");
+        resp.append("Available: ");
+        resp.append("</b>");
+        resp.append(doctor.getWorkingHour1() + " to " + doctor.getWorkingHour2());
         resp.append("</p>");
         return resp.toString();
     }
