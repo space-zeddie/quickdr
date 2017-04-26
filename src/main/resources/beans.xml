@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/cache" xmlns:mvc="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
 
-    <bean id="jane" class="com.zakharuk.quickdr.Therapist">
+    <context:component-scan base-package="com.zakharuk.quickdr"/>
+    <context:component-scan base-package="com.zakharuk.quickdr.dao"/>
+    <context:component-scan base-package="com.zakharuk.quickdr.entity"/>
+    <context:component-scan base-package="com.zakharuk.quickdr.config"/>
+    <tx:annotation-driven/>
+    <mvc:annotation-driven/>
+
+    <!--<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/testjdbc" />
+        <property name="username" value="root" />
+        <property name="password" value="admin" />
+        <property name="initialSize" value="5" />
+        <property name="maxTotal" value="10" />
+    </bean>-->
+
+   <!-- <bean id="jdbcTemplate" class="org.springframework.jdbc.core.simple.SimpleJdbcTemplate">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+-->
+    <bean id="jane" class="com.zakharuk.quickdr.entity.Therapist">
         <constructor-arg value="Jane"></constructor-arg>
         <constructor-arg value="115"></constructor-arg>
         <property name="patients">
@@ -13,8 +35,33 @@
         </property>
     </bean>
 
-    <bean id="john" class="com.zakharuk.quickdr.ChildPatient">
+    <bean id="john" class="com.zakharuk.quickdr.entity.ChildPatient">
         <constructor-arg value="John"></constructor-arg>
         <constructor-arg value="9"></constructor-arg>
     </bean>
+
+    <!--<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="packagesToScan">
+        <list>
+            <value>com.zakharuk.quickdr.entity</value>
+            <value>com.zakharuk.quickdr.dao</value>
+        </list>
+    </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="format_sql">true</prop>
+            </props>
+        </property>
+    </bean>-->
+  <!--  <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>-->
+    <!--<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>-->
+
 </beans>

@@ -1,9 +1,10 @@
-package com.zakharuk.quickdr;
+package com.zakharuk.quickdr.entity;
 
-import javax.print.Doc;
-import java.util.Date;
+import com.zakharuk.quickdr.entity.Doctor;
+import com.zakharuk.quickdr.entity.Patient;
+import com.zakharuk.quickdr.entity.Procedure;
+
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by matvii on 14.02.17.
