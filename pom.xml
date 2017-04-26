@@ -145,8 +145,19 @@
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity3</artifactId>
-			<version>RELEASE</version>
+			<version>3.0.2.RELEASE</version>
 			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.nekohtml</groupId>
+			<artifactId>nekohtml</artifactId>
+			<version>1.9.21</version><!--$NO-MVN-MAN-VER$-->
+		</dependency>
+
+		<dependency>
+			<groupId>nz.net.ultraq.thymeleaf</groupId>
+			<artifactId>thymeleaf-layout-dialect</artifactId>
+			<version>2.0.3</version>
 		</dependency>
 
 	</dependencies>
@@ -160,7 +171,7 @@
 	</build>
 	<repositories>
 	<repository>
-		<patientId>spring-snapshots</patientId>
+		<id>spring-snapshots</id>
 		<name>Spring Snapshots</name>
 		<url>https://repo.spring.io/libs-snapshot</url>
 		<snapshots>

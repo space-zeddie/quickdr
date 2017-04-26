@@ -34,17 +34,17 @@
         <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
             <input type="submit" class="btn btn-success" value="Sign Out"/>
         </form>
-        
+
         <div sec:authorize="hasRole('admin')">
             <a href="/register-doctor" class="btn btn-warning">Add Doctor</a>
             <a href="/add-patient" class="btn btn-warning">Add Patient</a>
         </div>
-        <div sec:authorize="hasAuthority('doctor')">
+        <div sec:authorize="${hasRole('doctor')}">
             <a href="/my-profile" class="btn btn-warning">Edit Profile</a>
             <a href="/unattended-patients" class="btn btn-warning">Unattended Patients</a>
             <a href="/my-patients" class="btn btn-warning">My Patients</a>
         </div>
-        <div sec:authorize="hasRole('patient')">
+        <div sec:authorize="${hasAuthority('patient')}">
             <a href="/my-med-record" class="btn btn-warning">My Medical Record</a>
             <a href="/available-doctors" class="btn btn-warning">Available Doctors</a>
         </div>

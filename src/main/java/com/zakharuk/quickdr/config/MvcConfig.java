@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.servlet.ViewResolver;
@@ -33,6 +34,8 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 
     @Autowired
     private DataSource dataSource;
+
+
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
