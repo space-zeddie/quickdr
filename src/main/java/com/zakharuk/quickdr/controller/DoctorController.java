@@ -109,6 +109,17 @@ public class DoctorController {
         return Constants.HEADER + "The doctor id is: " + doctor + Constants.FOOTER;
     }
 
+    @RequestMapping("/my-profile")
+    @ResponseBody
+    public String doctorProfile() {
+        Doctor doctor = null;
+        try {
+            doctor = doctorService.findByName(Constants.getCurrentUser());
+            return editDoctor(doctor.getId());
+        }catch (Exception ex) {
+            return Constants.HEADER + "Error retrieving the records: " + ex.toString() + Constants.FOOTER;
+        }
+    }
 
     @RequestMapping("/edit-doctor")
     @ResponseBody

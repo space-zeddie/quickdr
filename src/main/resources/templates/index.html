@@ -27,25 +27,20 @@
 <div class="container">
     <div class="jumbotron">
         <p>Welcome back, <b th:inline="text"> [[${#httpServletRequest.remoteUser}]] </b> !</p>
-        <!--<a href="/all" class="btn btn-primary">List all subjects</a>
-        <a href="/all-recommended" class="btn btn-primary">List all recommended subjects</a>
-
-
-        <a href="/new-user" class="btn btn-info">Register</a>
-        <a href="/my-console" class="btn btn-info">My Console</a>-->
 
         <a sec:authorize="isAnonymous()" href="/register" class="btn btn-success">Register</a>
         <a sec:authorize="isAnonymous()" href="/login" class="btn btn-success">Login</a>
-        <!--<a sec:authorize="isAuthenticated()" href="/logout" class="btn btn-success">Logout</a>
--->
-        <form th:action="@{/logout}" method="post">
+
+        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
             <input type="submit" class="btn btn-success" value="Sign Out"/>
         </form>
+        
         <div sec:authorize="hasRole('admin')">
             <a href="/register-doctor" class="btn btn-warning">Add Doctor</a>
             <a href="/add-patient" class="btn btn-warning">Add Patient</a>
         </div>
         <div sec:authorize="hasAuthority('doctor')">
+            <a href="/my-profile" class="btn btn-warning">Edit Profile</a>
             <a href="/unattended-patients" class="btn btn-warning">Unattended Patients</a>
             <a href="/my-patients" class="btn btn-warning">My Patients</a>
         </div>
