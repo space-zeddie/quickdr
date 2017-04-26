@@ -2,12 +2,8 @@
  * Created by citizenzer0 on 12/4/16.
  */
 $(document).ready(function(){
+    alert('ready!');
     //$('.regist').visibility(false);
-    $(".form_datetime").datetimepicker({
-        format: 'yyyy-mm-dd',
-        autoclose: true,
-        minView: 4
-    });
     $('.lnk_edit').click(function (e) {
         e.preventDefault();
         var name = $("#name").val();
@@ -15,56 +11,6 @@ $(document).ready(function(){
         var diagnosis = $("#diagnosis").val();
         var id = $('.lnk_edit').attr('id');
         window.location.replace("/update?id=" + id + "&name=" + name + "&age=" + age + "&diagnosis=" + diagnosis);
-    });
-    $('.lnk_edit_doc').click(function (e) {
-        e.preventDefault();
-        var name = $("#name").val();
-        var office = $("#office").val();
-        var whour1 = $("#whour1").val();
-        var whour2 = $("#whour2").val();
-        var id = $('.lnk_edit_doc').attr('id');
-        window.location.replace("/update-doctor?id=" + id +
-            "&name=" + name + "&office=" + office +
-            "&whour1=" + whour1 +
-            "&whour2=" + whour2);
-    });
-    $('.edit-doc').click(function (e) {
-        e.preventDefault();
-        var id = $('.edit-doc').attr('id');
-        window.location.replace("/edit-doctor?id=" + id)
-    });
-    $('.edit-pat').click(function (e) {
-        e.preventDefault();
-        var id = $('.edit-pat').attr('id');
-        window.location.replace("/edit-patient?id=" + id)
-    });
-    $('.regist_doc').click(function (e) {
-        e.preventDefault();
-        var name = $("#name").val();
-        var office = $("#office").val();
-        var whour1 = $("#whour1").val();
-        var whour2 = $("#whour2").val();
-        window.location.replace("/create-doctor" +
-            "?name=" + name + "&office=" + office +
-            "&whour1=" + whour1 +
-            "&whour2=" + whour2);
-    });
-    $('.regist_patient').click(function (e) {
-        e.preventDefault();
-        var name = $("#name").val();
-        var age = $("#age").val();
-        var diagnosis = $("#diagnosis").val();
-        window.location.replace("/register-patient" +
-            "?name=" + name + "&age=" + age + "&diagnosis=" + diagnosis);
-    });
-    $('.regist').click(function (e) {
-       e.preventDefault();
-       var name = $("#name").val();
-       var password = $("#password").val();
-       var role = $("#role").val();
-       if (role === "admin" || role === "doctor" || role === "patient")
-           window.location.replace("/createuser?name=" + name + "&password=" + password + "&role=" + role);
-       alert("Input admin, doctor, or patient as role");
     });
     $("#adds").click(function(e){
         e.preventDefault();

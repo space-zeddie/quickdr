@@ -4,12 +4,12 @@ import com.zakharuk.quickdr.dao.UserDao;
 import com.zakharuk.quickdr.entity.*;
 import com.zakharuk.quickdr.service.DoctorService;
 import com.zakharuk.quickdr.service.PatientService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.print.Doc;
 import java.util.Date;
 
 /**
@@ -130,5 +130,4 @@ public class UserController {
         res.append(Constants.FOOTER);
         return res.toString();
     }
-
 }
